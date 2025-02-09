@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    
+<html>
+<head>
+<title> [JSTL0531.jsp]</title>
+</head>
+<body>
+ <font size=6 color=red> <b> [JSTL0531.jsp]</b></font>
+	
+<%
+	int dan=3;
+%>
+	
+</body>
+</html>

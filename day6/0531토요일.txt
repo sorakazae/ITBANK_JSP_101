@@ -1,0 +1,292 @@
+강사시스템 IP 주소  \\192.168.33.127
+
+jsp과정
+1주-HTML태그및 CSS, JavaScript
+2주-DB연결, SQL문, 신규등록 ,TomCat 연결-주의사항 톰캣이 설치되면서 자동시작 => off   -  monitor tomcat에서 stop  -> 이클립스와
+				 톰캣 연결 + WebContent가상폴더에서 작업
+
+3주-전체출력, 수정, 삭제처리
+4주-List페이징, Template, 파일업로드
+html+css+javaScript +  DB연결 => 웹브라우저
+
+작업폴더 
+C:/zoom
+C:/zoom/my
+
+[자바JDK 관련사이트]
+ 첫번째 jdk찾는방법
+ http://www.oracle.com/technetwork/java/index.html
+
+[이클립스 다운로드]
+http://www.eclipse.org => 오른쪽상단 노란색 download=>J2EE첫번째항목
+      
+[tomcat웹서버다운로드]
+http://www.apache.org/ ==>왼쪽하단에서  Tomcat선택
+http://tomcat.apache.org/
+  왼쪽 Download클릭해서 tomcat7.0 클릭해서 
+  core에서 
+  32-bit/64-bit Windows Service Installer (pgp, md5)
+
+[Editplus편집기]
+www.editplus.co.kr
+  epp370.exe파일 더블클릭 => 설치=>accept동의
+  바탕화면에 빨간수첨=EditPlus 3 더블클릭
+  파일메뉴 -> 새파일 -> html페이지
+  도구메뉴 -> 사용자도구구성 => 파일항목 - 저장시 백업파일 생성체크 해제
+  도구메뉴 -> 사용자도구구성 => 일반 => 글꼴
+		Comic Sans MS Bold글꼴 16포인트 선택해서 작업시작
+  파일문서 저장이름 test1.html, test2.html
+  test1.html -> File메뉴 새이름으로저장...test2.html
+  test2.html -> File메뉴 새이름으로저장...test3.html
+  test3.html -> File메뉴 새이름으로저장...test4.html
+  test4.html -> File메뉴 새이름으로저장...test5.html
+
+
+[html태그, CSS, JavaScript]
+수업을 위해서 그림파일 다운 => 아이콘천국
+
+저장은 my폴더에...
+동물클릭[1][2][3]...
+	aaa.gif
+	bbb.gif
+	ccc.gif
+	ddd.gif
+라인클릭[3][5]...
+
+라인개행처리 <br> 한줄 개행 <p> 두줄 개행 <hr> 라인을 긋고 개행
+글꼴 <font size=숫자> </font> 라인개행X,진하게X    <b> 굵은 글씨 <u>밑줄 <i> 기울기
+제목 <h1~6> 제목 </h1~6> 라인개행O,진하게O   ----  1이 큰수 숫자가 6으로 갈수록 크기가 작아짐
+
+------------------------------------------------------------------------------------------------------
+                 05/11 일요일 배울것은? 
+                    book1.html문서에 윗첨자,아래첨자  -> x제곱+y제곱 = (x*y)제곱 Ho2
+					test6.html -> File메뉴 새이름으로저장...book1.html
+                                        book1.html -> File메뉴 새이름으로저장...book2.html
+					book2.html -> File메뉴 새이름으로저장...book3.html
+					...
+					book5.html -> File메뉴 새이름으로저장...note1.html
+                    table태그
+		    CSS적용
+                    a태그
+                    form태그
+                    JavaScript공백체크
+-------------------------------------------------------------------------------------------------------
+		05/17 토요일 배울것은?
+		jdk 설치여부 다시확인
+		이클립스 주노버전 설치
+		톰캣 서버 설치
+		오라클서버설치 -> XE버전 설치시  TNS포트:1521	아이디 system	비밀번호 oracle => 비밀번호 오라클 설치시 두번 입력
+
+
+two.jsp => 사번, 이름, 급여 입력후 저장누르면 => twoSave.jsp문서로 이동
+twoSave.jsp => DB연결 코드기술
+<html>
+   <%! 필드 및 메소드 선언 private Connection CN; %>
+   <% int kor=27 자바코드 기술; %>
+   <&= kor %>
+</html>
+
+two.jsp문서에서 twoSave.jsp문서로 값전달할때
+무조건 request이용,값을넘길때 무조건 request이용,
+값을 넘길때 String형으로 넘어감 
+two.jsp
+ 급여: <input type=text name="pay">
+twoSave.jsp문서에서 값을 받을때
+  String data3=request.getParameter("pay");
+  int value3=Integer.parseInt(data3);
+
+
+1. jdk 설치
+2. apache 설치
+3. 이클립스 juno					워크스페이스 => C:\zoom\my 안에
+ 오른쪽 위 java EE 클릭
+ window - preferences - server - environments - add - tomcat
+4. 오라클 설치
+
+jsp 문서 html태그 + JavaScript코드 + CSS스타일시트
+jsp문서에서 자바코드 기술
+
+  <%! 멤버필드, 메소드선언 %>
+  <% 자바코드기술 %>
+  <%= (변수값)출력 %>
+
+jsp문서에서 데이타를 넘길때 무조건 request개체로 넘김 문자열
+	request개체.getParameter(" ") 넘어오는데 문자열
+
+오라클설치
+
+data2 = request.getParameter("name");
+data3 = Integer.parseInt(request.getParameter("pay"));
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ0518ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+two.jsp문서에 데이타 입력하면 => twoSave.jsp문서 저장처리
+저장이 성공이면 twoList.jsp문서로 이동
+
+다른사람,다른장소,다른컴퓨터에서 웹으로 본인컴퓨터(웹서버설치)로 접속
+웹서버-톰캣,웹스피어,제우스,오라클웹서버,웹로직
+웹서버페이지프로그램 => jsp,asp,php
+
+웹서버를 설치하면 자동으로 사용할수 있는 내장개체가 존재
+
+request 는 값전달  ==> 값전달은 100% String형, 숫자입력해서 전달해도String
+response는 화면이동
+session 는 인증   --->  login.jsp문서에서 로그인함 => good.jsp/order.jsp문서에서 본인기억 (쇼핑몰 같은 방식)
+out     는 출력   --->  System.out.println("안내문"+값변수);   자바기초에서 출력
+			 ㄴ> out.println("안내문"+값변수);
+page    는 현재정보 ->  <%@ page language=java contentType="text/html" 
+			<%@ page import="java.sql.*" %>
+
+
+request,response,session,out,page특성 설명
+two.jsp => 입력만 하는 문서
+twoSave.jsp =>저장만 하는 문서
+twoList.jsp => 전체데이타출력만 하는 문서
+HTML태그는 웹브라우저 인식
+SQL언어 Insert구문설명후
+ two.jsp문서에서 데이타 입력하면 twoSave.jsp문서로 데이타넘기기
+ insert into ~ values, select * from insa
+
+SQL>sqlplus system/oracle
+
+SQL> select * from insa order by sabun;
+
+
+
+twoSave.jsp => insert into insa values( 7700,'Lee',sysdate,32)
+twoList.jsp => select * from insa order by sabun
+		while(조건) { <tr>태그안에 <td> </td> </tr>}
+
+조회한결과값을 RS개체가 기억을 한다.            RS의 위치는 0번? 줄 next를 해줘야 함
+RS.getInt("필드") 화면에 출력시킨다.
+
+
+<td>
+ <a href="twoDetail.jsp?idx=Gsabun"> <%=RS.getString("name") %> </td>
+</td>
+
+<td>
+ <a href="twoDetail.jsp?idx=<%= RS.getInt("sabun"%>"> <%=RS.getString("name") %> </td>
+</td>
+
+<td>
+ <a href="twoDetail.jsp?idx=2233"> <%=RS.getString("name") %> </td>
+</td>
+
+
+String url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+CN=DriveManager.getConnection(url,"system", "oracle");
+
+ST=CN.createStatment();
+sql="select * from insa order by sabun";
+RS=executeQuary(sql);
+while( RS.next()==true ) {
+   <td> <%= RS.getInt("sabun") %> </td>
+
+}
+
+	<%! 필드선언 %>  <%! private Connection CN; }
+	<% 자바코드기술 %> <% 자바코드기술 %>
+	<%= 출력 %>
+
+나머지는 day4 문서 참조
+
+----------------------------------------------------0524 토요일------------------------------------------------------
+
+twoList.jsp문서에 레코드갯수 ==> 마지막에 페이징구분      - insa30개 데이타...문서
+AAA.jsp문서에 화면이동 BBB.jsp => get방식
+
+two.jsp문서에서 <form method="post" actio =~~>
+		get/post방식설명
+		twoList.jsp전체목록출력에서 한건상세이동
+twoDelete.jsp문서에서 삭제할사번을 입력하는 화면
+twoDeleteSave.jsp => 진짜 삭제작업 Statement명령어 사용
+
+twoSave.jsp ==> File save as... twoSaveCOPY.jsp
+twoSaveCOPY.jsp
+twoSave.jsp문서에서 저장처리를 Statement명령어대신
+				PreparedStatement명령어로 대신
+
+twoEdit.jsp => 수정할 데이타출력
+twoEditSave.jsp => 진짜 수정처리할 문서, PreparedStatement명령어 사용
+
+C언어=출력,C++언어=>출력
+jsp문서 출력
+<%! private int su=27% %>  <== declear=영역
+<%= int kor=27% %> <== 일반자바를 기술
+<%= 변수 %> <==jsp출력
+out.println("안내문="+값); <== out내장개체로 출력
+
+AAA.jsp문서에서 데이타를 넘겨서 BBB.jsp문서로 보내고 싶다.
+
+AAA.jsp문서에서 코드 작성
+<a href="BBB.jsp?가짜변수=값">[BBB.jsp] </a>
+<a href="BBB.jsp?idx=2233">[BBB.jsp] </a>  ---  get방식
+
+BBB.jsp문서에서 idx변수값받아서 출력
+<%= 변수 %> <==jsp출력
+out.println("안내문="+값); <==out내장개체로 출력
+
+
+System.out.println("안내문="+값); <= 콘솔창 출력
+프로그램 언어-html,javascript
+
+AAA.jsp => BBB.jsp문서로 값을 넘김
+BBB.jsp => 단독실행이 안됨
+two.jsp => 데이타입력만
+twoSave.jsp => 데이타저장처리만, 화면이 안보이게 해도 됨
+
+twoList.jsp => 이름=상품=제목클릭하면 한건상세문서로 넘어감
+twoDetail.jsp => select ~ where sabun=3315
+		twoDetail.jsp문서는 오직한건만 출력
+
+twoList.jsp => select * from insa order by sabun => 모든데이타출력
+twoDetail.jsp => select * from insa where sabun=3115 => 한건만 출력 
+twoDelete.jsp => 사번삭제 화면
+twoDeleteSave.jsp => 진짜 사번삭제 역할하는 화면
+
+오늘의 정리
+
+twoList.jsp문서에서 제목=이름을 클릭하면 상세문서로 이동
+twoDetail.jsp
+----------------------------------------------------------0525 일요일------------------------------------------------------------
+삭제,편집,자바스크립트 two.jsp문서=js적용,
+statement명령어 대신 PreparedStatement
+
+two.jsp화면 => 단독실행O,입력화면
+twoSave.jsp화면 => 단독실행X,저장화면
+
+twoList.jsp문서 => 보내는역할
+ <a href="상세문서.jsp?가짜변수=넘어갈값"> [제목=이름] </a>
+
+twoDelete.jsp => 받는역할 => 단독실행X
+String data = request.getParameter("가짜변수");
+
+twoDetail.jsp문서는 한건상새문서보기 가능
+한건문서를 보면서 [삭제][편집][주문][댓글] 등...
+
+삭제=twoDelete.jsp문서는 단독실행, 삭제할 사번 입력
+편집=twoEdit.jsp문서는 입력한 데이타 보면서 편집
+
+
+
+twoList.jsp문서 레코드갯수 다시 기술
+ select count(*) as cnt from insa;
+
+twoDelete.jsp문서에서 삭제할 사번 입력후 삭제
+twoDeleteSave.jsp문서에서 진짜 삭제처리
+
+twoEdit.jsp문서에서 수정할 데이타 입력하고
+twoEditSave.jsp문서에서 진짜 수정=업데이트처리
+
+twoSave.jsp문서에 Statement명령어대신 PreparedStatement명령어 사용
+twoSave.jsp문서 -> twoSaveCopy.java 다른이름으로 저장
+작업은 twoSave.jsp문서에서 처리
+
+------------------------------------------------------0531 토요일 -------------------------------------------------------------
+
+파일의업로드
+twoList.jsp문서 페이징구분 [1][2][3]
+ select ~~ where rownum between 11 and 20
+
+
+

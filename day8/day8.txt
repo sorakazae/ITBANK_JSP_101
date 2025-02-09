@@ -1,0 +1,71 @@
+파일업로드
+WebContent
+  |--META-INF
+  |--WEB-INF
+    |--lib
+      |--ojdbc14.jar
+      |--cos.jar => 파일의 업로드
+      |--standard.jar => jstl태그 <c:set~~>
+      |--jstl.jar => jstl태그
+    |--web.xml => 웹서버가 시작되면서 자동으로 인식되는 세팅
+  |--two.jsp => 자바스크립트 아이디 중복 문서
+  |--CCC.jsp => 파일목록
+  |--DDD.jsp => 파일업로드되도록 MultipartRequest
+  |--JSTL0531.jsp => jstl태그 <c:~~>
+  |--twoList.jsp => 페이징구분 레코드갯수, 전체레코드출력
+  |--twoListCopy.jsp => twoList.jsp 복사본 
+
+
+JSTL태그는 반드시 standard.jar/jstl.jar 필요
+JSTL태그는 반드시 page상단에 선언해주어야 함
+JSTL태그는 반드시 <c:~~~> <fmt:~~~>
+
+JSTL태그의 출력 EL태그 ${}
+
+
+변수선언
+<c:set var="변수이름" value="${3}" />
+<c:set var="변수이름" />
+
+반복문
+<c:forEach var="변수" begin="1" end="10" step"1">
+</c:forEach>
+
+if문 조건 test
+<c:if test="조건">
+</c:if>
+
+if~else if~else if~else
+<c:choose>
+ <c:when test="조건"> 출력 </c:when>
+</c:choose>
+
+
+
+
+
+SQL> select rownum, sabun, name, nalja, pay from insa;
+
+SQL> select rownum, sabun, name, nalja, pay from insa
+     where rownum between 1 and 5;
+
+SQL> select rownum, sabun, name, pay from insa
+     where rownum between 6 and 9;
+
+SQL> select rownum, sabun, name, nalja, pay from
+     (select rownum as rn, sabun, name, pay from insa)
+     where rn between 11 and 20;
+
+SQL> select * from
+     (select rownum as rn, sabun, name, pay from insa)
+     where rn between 11 and 20;
+
+SQL> select rownum as rn, sabun, name, nalja, pay from insa;
+SQL> select rownum as rn, sabun, name, nalja, pay
+     from insa where rn 1 and 10;
+
+SQL> select rownum as rn, sabun, name, nalja, pay
+     from insa where rn 11 and 20;
+
+
+sql 쿼리문 쓸때 공백 중요(공백 구분 정확히 해야함)

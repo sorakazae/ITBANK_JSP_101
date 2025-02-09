@@ -1,0 +1,7 @@
+INDEX VERSION 1.122+C:\zoom\my\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1894726861.index
+1243670099.index
+2524522874.index
+3545959689.index
+2881299313.index
+3311416281.index

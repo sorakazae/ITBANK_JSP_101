@@ -1,0 +1,319 @@
+강사컴퓨터ip주소:  192.168.33.105
+시작=> 네모난박스=> \\192.168.33.105
+오라클 들어가는 명령
+시작=>cmd =>도스창=콘솔창
+
+C:\Users\Administrator> sqlplus  system/oracle
+SQL> select  *  from  insa  order by  sabun ; 
+
+jsp과정
+1주-HTML태그및 CSS, JavaScript
+2주-DB연결, SQL문, 신규등록
+3주-전체출력, 수정, 삭제처리
+4주-List페이징, Template, 파일업로드
+html+css+javaScript +  DB연결 => 웹브라우저
+
+
+05-24-토요일
+twoList.jsp문서에  레코드갯수==>마지막에 페이징구분
+AAA.jsp문서에 화면이동 BBB.jsp =>get방식
+
+two.jsp문서에서  <form method="post" actio =~~>
+                        get/post방식설명
+                        twoList.jsp전체목록출력에서 한건상세이동
+
+twoDelete.jsp문서에서 삭제할사번을 입력하는 화면
+twoDeleteSave.jsp =>진짜 삭제작업 Statement명령어사용
+
+twoSave.jsp ==> File save as... twoSaveCOPY.jsp
+twoSaveCOPY.jsp
+twoSave.jsp문서에서  저장처리를 Statement명령어대신
+                                              PreparedStatement명령어로 대신
+
+twoEdit.jsp=>수정할 데이타출력
+twoEditSave.jsp=>진짜 수정처리할 문서, PreparedStatement명령어 사용
+
+
+
+첫째주  html태그및, javascript, css실습
+둘째주  이클립스에 톰캣연결  + WebContent가상폴더에서 작업
+           톰캣설치,오라클설치, web프로그램작성        
+
+           two.jsp문서에서 데이타입력하면 => twoSave.jsp문서 저장처리
+           저장이 성공이면  twoList.jsp문서로 이동
+
+다른사람,다른장소, 다른컴퓨터에서 웹으로 본인컴퓨터(웹서버설치)로 접속
+웹서버-톰캣,웹스피어, 제우스, 오라클웹서버, 웹로직
+웹서버페이지프로그램=>jsp, asp, php
+request는 값전달 => 값전달은 100% String형, 숫자입력해서 전달해도String
+response는 화면이동
+session는  login.jsp 로그인함=>good.jsp/order.jsp문서에서 본인기억
+out는 출력   System.out.println("안내문" + 값변수 ) ; 자바기초에서출력
+                  out.println("안내문" + 값변수 ) ;
+page는 현재정보 <%@ page  language=java  contentType="text/html"
+                       <%@ page  import="java.sql.*"  %>
+
+           웹서버를 설치하면 자동으로 사용할수 있는 내장개체가 존재
+           request, response,  session, out, page특성 설명
+           two.jsp=>입력만 하는 문서
+           twoSave.jsp=>저장만 하는 문서
+           twoList.jsp=>전체데이타출력만 하는  문서
+HTML태그는 웹브라우저인식
+SQL언어 Insert구문설명후
+ two.jsp문서에서 데이타 입력하면 twoSave.jsp문서로 데이타넘기기
+ insert into ~ values  ,  select * from  insa 
+
+C:\Users\Administrator> sqlplus  system/oracle
+SQL> select  sabun, name, nalja, pay  from  insa  ; 
+SQL> select  *  from  insa  order by  sabun ; 
+
+HTML: hyper text mark-up language
+SQL:  structured  Query  language
+SQL언어 = DDL, DML, DCL
+DDL=data define language=> create , alter, drop
+DML=data manipulation language=>select, insert
+DCL=grant,revoke, commit,  rollback 
+
+SQL언어규칙에 맞추어서 작성되는 DB=RDB=관계형데이타베이스
+문자데이타는 반드시  Lee'   '모니터'
+oracle에서 날짜필드는 제공 sysdate필드
+insert  into 테이블(필드, 필드 )  values ( 7788, 'Lee',  sysdate,  92 ) ;
+SQL> insert into insa values( 7788, 'Lee', sysdate, 92) ; 
+
+
+Web0517=> 오.버 => Export=>   war file =>  경로는 C:/zoom폴더선택 
+ WebContent => 오.버 => new => folder
+     |--META-INF 손대지마세요
+     |--WEB-INF 손대지마세요
+         |--lib =>오.버 =>붙여넣기 ojdbc14.jar
+             |--ojdbc14.jar파일만 복사해서 붙여넣기 하세요 
+         |--web.xml문서
+     |--images=>그림파일 넣어주세요
+     |--two.jsp => File메뉴 save as... twoSave.jsp 
+     |--twoSave.jsp =>  insert into insa values( 7700, 'LEE', sysdate, 32 ) 
+     |--twoList.jsp => File메뉴 save as... twoDetail.jsp 
+     |--twoDetail.jsp=> 한건상세 select ~ where sabun=데이타 
+
+<td>
+   <a href="twoDetail.jsp?idx=Gsabun"> <%= RS.getString("name") %>
+ </td>
+
+<td>
+   <a href="twoDetail.jsp?idx=<%= RS.getInt("sabun" %>"> <%= RS.getString("name") %>
+ </td>
+
+<td>
+   <a href="twoDetail.jsp?idx=2233"> <%= RS.getString("name") %>
+ </td>
+
+
+
+
+String url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+CN=DriverManager.getConnection( url,"system", "oracle") ;
+
+ST=CN.createStatment( ) ;
+sql="select * from insa order by sabun " ; 
+RS=ST.executeQuery(sql) ;
+while( RS.next( )==true ) {
+     <td> <%= RS.getInt("sabun")  %> </td>
+}
+
+ 
+	<%! 필드선언 %>   <%!  private  Connection CN  ;   }
+             <% 자바코드기술 %>   <% 자바코드기술  %>
+             <%= 출력 %>  
+
+
+
+ C:\Users\Administrator> sqlplus  system/oracle
+ SQL> drop  table  insa ;  //05-18-일요일부터 작성X
+
+ SQL> create  table  insa( //05-18-일요일부터 작성X
+   sabun   number(4) primary key,  //주번=학번
+   name   varchar2(16) not null  ,
+   nalja   date  not null ,
+   pay     number(3)   not null  
+ );
+
+SQL>  commit ;
+SQL>   insert into insa values( 1100, 'lee', sysdate, 29 );
+SQL>   insert into insa values( 2200, 'goo', sysdate, 74 ); 
+SQL>  select  sabun, name, nalja, pay from  insa ;
+SQL>  commit ;
+two.jsp문서에서 데이타입력 =>저장처리를 위해서 twoSave.jsp이동됨
+twoEdit.jsp문서에서 데이타수정 => 수정작업을 위해서 twoEditSave.jsp
+jsp문서에서 데이타를 넘길때 무조건 request개체로 넘김 문자열
+ request개체.getParameter( " ") 넘어오는데 문자열
+
+식사후 오라클설치  
+Day0517자바기초플젝에서  구구단완성, 형변환 이해
+two.jsp문서에서 twoSave.jsp문서로 데이타넘겨요
+
+data2 = request.getParameter("name");
+data3 = Integer.parseInt(request.getParameter("pay") );
+
+
+강사컴퓨터ip주소:  192.168.33.100
+시작=> 네모난박스=> \\192.168.33.100
+C:/zoom폴더/프로그램다운로드 폴더 내용전체 복사해가세요
+첫번째  jdk-7u55-windows-x64.exe설치 
+          C:/Program Files/Java/jdk1.7.0_55/~~~확인
+두번째  apche-tomcat-7.0.53.exe설치
+          C:/Tomcat 7.0
+세번째  eclipse-jee-juno-SR1-win32-x86_64.zip압축풀어주세요
+          C:/zoom/eclipse-jee-juno-SR1-win32-x86_64/eclipse/ eclipse.exe
+네번째 오라클설치 oracleXEUniv.exe
+          비밀번호: oracle
+          비밀번호: oracle
+
+
+jsp문서  html태그 + javaScript코드 + CSS스타일시트
+jsp문서에서 자바코드 기술
+    <%! 멤버필드, 메소드선언;   %> 
+    <% 자바코드기술;  %>
+    <%= 변수값출력  %>
+
+
+
+C:/zoom폴더/my폴더 생성 ==> my폴더를 이클립스작업폴더 workspace
+이클립스 File => new => project... => java project
+플젝이름: 
+Day0517
+ src => 오.버 => new => package 
+  |--net.hb.day17 => 오.버 => new => class
+       |--First클래스  main함수 기술  
+                         int dan=1; Scanner sc=new Scanner(System.in) ;
+                         //for반복문으로 구구단 기술하세요 
+
+05-17-토요일
+two.html문서 editplus에서 자바스크립트 공백체크 다시확인
+jdk설치여부 다시확인 
+eclipse-jee-juno-SR1-win32-x86_64.zip=>압축풀어서 이클립스설치
+톰캣서버설치
+오라클서버설치=>XE버젼설치시 TNS포트:1521  
+  아이디: system
+  비밀번: oracle=>오라클설치시 두번 입력해요
+     
+two.jsp=> 사번, 이름, 급여 입력후 저장누르면 => twoSave.jsp문서이동
+twoSave.jsp=> DB연결코드기술
+<html>
+    <%!  필드및 메소드선언 private  Connection CN;  %>
+    <%  int kor=27자바코드기술;  %>
+    <%=  kor  %>
+</html>   
+
+two.jsp문서에서 twoSave.jsp문서로 값전달할때
+무조건 request이용, 값을넘길때 String형으로 넘어감
+ two.jsp
+  급여: <input type=text  name="pay">
+ twoSave.jsp문서에서 값을 받을때
+   String data3=request.getParameter("pay") ;
+   int value3= Integer.parseInt( data3) ;
+
+
+
+
+
+작업폴더 
+C:/zoom
+C:/zoom/my
+_______________________________________________________________________________
+	05-11-일요일
+	test6.html 
+test6.html -> File메뉴 새이름으로저장... book1.html
+book1.html -> File메뉴 새이름으로저장... book2.html
+book2.html -> File메뉴 새이름으로저장... book3.html
+	book1.html문서 윗첨자 아래첨자 
+	table태그
+	CSS적용
+book5.html -> File메뉴 새이름으로저장... note1.html
+book5.html -> File메뉴 새이름으로저장... two.html
+	a태그
+	form태그=>화면=>전달한 폼=화면
+	JavaScript	공백체크 	
+
+
+3. 속성
+   <TABLE border="0"         ------> 외곽테두리 두께를 0로 지정. 기본값은 "1"
+                width="너비"     ------> 전체 테이블의 가로크기. 픽셀값과 %값이 있음
+                height= "높이"   ------> 전체 테이블의 세로크기. 픽셀값과 %값이 있음
+                align="left/right/center" --> 문서에서의 테이블의 위치
+                cellpadding="픽셀값"   ---> 테두리와 내용데이터와의 간격. 상하좌우 모두 적용
+                cellspacing="픽셀값"   ---> cell과 cell사이의 투명한 간격 
+                bgcolor="색상값/명"    ---> 배경색
+                background="이미지명" --> 배경이미지 파일 주소
+                bordercolor="색상값/명" --> 테이블의 전체 외곽선에 색상을 지정
+                bordercolorlight="색상값/명"     ----> 외곽선의 밝은 부분의 색상지정(익스플로러만)
+                bordercolordark="색상값/명" >  ----> 외곽선의 어두운 부분의 색상지정
+
+     <CAPTION align="top/bottom">  ----->상하조절
+     </CAPTION>
+     <TR align="left/right/center"  -------> 행에 있는 모든요소에 적용된다.
+            bgcolor="색상값/명"
+            background="이미지명">  ------>행 전체요소에 이미지 삽입 (넷스케이프에서만) 
+        <TD align="left/right/center"  ----->셀내에서의 좌/우/중앙 위치지정
+               valign="top/middle/bottom" -->셀내에서의 상/중앙/하단 위치지정
+               width="너비"             -------->셀의 가로크기. 픽셀값과 %값이 있다.
+               height="높이"            -------->셀의 세로크기. 픽셀값과 %값이 있다.
+               bgcolor="색상값/명"
+               background="이미지명"
+               rowspan="합칠 셀갯수"  ------>세로 셀들을 합칠때 사용
+               colspan="합칠 셀갯수"  ------>가로 셀들을 합칠때 사용
+               nowrap >         -------------> 셀내에서 자동으로 줄바꿈하지 못하게 한다.
+                                               셀의 width가 데이타의 크기에 따라 넓혀진다.  
+         </TD>
+      </TR>
+
+[자바JDK 관련사이트]
+ 첫번째 jdk찾는방법
+ http://www.oracle.com/technetwork/java/index.html
+
+[이클립스 다운로드]
+http://www.eclipse.org => 오른쪽상단 노란색 download=>J2EE첫번째항목
+      
+[tomcat웹서버다운로드]
+http://www.apache.org/ ==>왼쪽하단에서  Tomcat선택
+http://tomcat.apache.org/
+  왼쪽 Download클릭해서 tomcat7.0 클릭해서 
+  core에서 
+  32-bit/64-bit Windows Service Installer (pgp, md5)
+
+[Editplus편집기]
+www.editplus.co.kr
+   epp370.exe파일 더블클릭 =>설치=>accept동의 
+   바탕화면에 빨간수첩=EditPlus 3  더블클릭
+   파일메뉴 -> 새파일 => html페이지 
+   도구메뉴 -> 사용자도구구성=> 파일항목
+                                             저장시 백업파일 생성체크해지
+   도구메뉴 -> 사용자도구구성=> 일반=> 글꼴
+                    Comic Sans MS  Bold  16 선택해서 작업시작 
+   파일문서 저장이름  test1.html, test2.html
+   test1.html -> File메뉴 새이름으로저장... test2.html
+   test4.html -> File메뉴 새이름으로저장... test5.html
+                                              
+[html태그, CSS, JavaScript]
+html수업을 위해서 그림파일 다운 =>아이콘천국
+저장은 my폴더에 하세요 
+동물클릭 [1] [2] [3]
+	aaa.gif
+	bbb.gif
+	ccc.gif
+	ddd.gif
+라인클릭 [3] [5]
+
+
+라인개행 <br> <p>  <hr>
+글꼴 <font  size=7>  </font> 라인개행X, 짙하게X
+제목 <h숫자>  제목  </h1> 라인개0,짙하게
+
+
+
+
+
+
+
+
+
+
+

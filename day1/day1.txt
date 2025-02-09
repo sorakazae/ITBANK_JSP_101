@@ -1,0 +1,25 @@
+int a=avg;  에러해결  ->  int a=
+int b=data; 에러해결  ->  int b=Integer.parseInt(data);
+
+two.jsp
+<form action="twoSave.jsp"> 
+
+</form>       
+ 
+저장버튼 누르면 입력한 데이터가 twoSave.jsp로 넘어간다.
+
+twoSave.jsp
+String data1 = request.getParameter("sabuN");
+String data2 = request.getParameter("name");
+String data3 = request.getParameter("pag");
+
+int b = Integer.parseInt(data1);
+
+
+
+jsp과정
+
+html+css+javaScript+DB연결 => 웹브라우저
+
+작업폴더
+C:\zoom\my

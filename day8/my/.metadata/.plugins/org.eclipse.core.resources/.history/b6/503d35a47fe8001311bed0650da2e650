@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+
+<html>
+<head>
+<title> [DDD.jsp]</title>
+</head>
+<body>
+<%
+	String data1=request.getParameter("name");
+	String data2=request.getParameter("title");
+	// String data3=request.getParameter("num");
+	String data4=request.getParameter("file1");
+	String data5=request.getParameter("file2");
+%>
+<h1>
+	넘어온이름:<%= data1 %> <br>
+	넘어온제목:<%= data2 %> <br>
+	넘어온파일1:<%= data4 %> <br>
+	넘어온파일2:<%= data5 %> <br>
+</h1>
+<hr><p>
+<%
+  ServletContext context = this.getServletContext();
+  String realpath=context.getRealPath("filesave"); // 파일이 저장될 파일경로
+  File file = new File(realpath);
+  file.mkdir();
+  
+  MultipartRequest multi = null; // new MultipartRequest(1,2,3,4,5)
+  // multi = new MultipartRequest(request,경로,사이즈,"euc-kr",중복된파일);
+  multi = new MultipartRequest(request,realpath,1024*1024*10,"euc-kr",new DefaultFileRenamePolicy());
+  out.println("<font size=6><b>[데이타출력]</b></font>");
+  Enumeration et = multi.getParameterNames();
+  while(et.hasMoreElements()==true){
+	  String name = (String)et.nextElement();
+	  String value = multi.getParameter(name);
+	  out.println("<font size=7>"+name+":"+value+"</font>");
+  }//while end
+%>
+
+</body>
+</html>
+
+
+
+
+

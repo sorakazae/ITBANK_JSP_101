@@ -1,0 +1,2 @@
+META-INF WEB-INF 건드리지 않는다.
+이클립스 WEB-INF의 lib폴더에 ojdbc14.jar을 붙여넣는다.

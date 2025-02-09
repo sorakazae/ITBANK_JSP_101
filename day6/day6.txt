@@ -1,0 +1,28 @@
+SQL> delete from insa where sabun=2234;
+ String data=request.getParameter("sabun");
+ sql="delete from insa where sabun="+ data;
+
+twoDetail.jsp문서 =>twoEdit.jsp 다른이름으로 저장
+twoSave.jsp문서 => twoEditSave.jsp 다른이름으로 저장
+twoEdit.jsp => twoDetail.jsp+two.jsp
+
+단독실행 가능 문서=> two.jsp/twoList.jsp/twoDelete.jsp
+ twoList.jsp => 이름클릭 => 상세문서 twoDetail.jsp
+ 상세문서 맨마지막 [수정] => twoEdit.jsp
+
+SQL> select * from insa;
+SQL> insert into insa values( 4456,'cd',sysdate,69);
+SQL> insert into insa values( 4457,'ef',sysdate,74);
+SQL> insert into insa values( 4458,'gh',sysdate,99);
+
+SQL> commit;
+
+SQL> select * from insa order by sabun;
+SQL> update insa set name='bank';
+SQL> rollback;
+SQL> select * from insa order by sabun;
+SQL> update insa set name='you',nalja=sysdate, pay=123 where sabun=4400;
+
+
+twoSave.jsp => 단독실행 X, PreparedStatement 명령어
+twoSave.jsp => twoSaveCopy.jsp 다른 이름 저장

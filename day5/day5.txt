@@ -1,0 +1,36 @@
+SQL> select * from insa order by sabun desc;
+SQL> select * from insa order by sabun asc;
+SQL> select * from insa where sabun=3115;                     사번 3115 조회
+SQL> select * from insa where name=bank; // 에러
+SQL> select * from insa where name='bank';                    이름 bank 조회
+SQL> select * from insa where name="bank"; // 에러
+SQL>
+SQL> select * from insa where name like '%e%';                이름중에서 e가 포함된 사람 조회
+SQL> select * from insa where name = like '%e%'; // 에러
+
+SQL> select * from insa where pay >=70;                       급여중에서 70보다 크거나 같은사람
+
+SQL> select count(*) from insa;                               내용 개수
+SQL> select count(sabun) from insa;
+SQL> select count(*) as cnt from insa; // 응용  (cnt는 가짜 필드)
+
+SQL> delete * from insa; // delete *(별) => 에러
+SQL> delete from insa;
+SQL> select * from insa;
+SQL> rollback; // 삭제작업취소
+
+SQL> select * from insa;
+SQL> delete from insa where sabun=2200;
+SQL> delete * from insa where sabun=2200; // 에러
+SQL> select * from insa;
+
+delete,insert,update처리 명령어 순서
+CN=DriverManager.getConntection( url, "id","pass");
+
+모든명령어는 CN를 참조해서 생성
+Statement명령어 생성하는 방법
+
+ST=CN.createStatement();
+sql="delete from insa where sabun=2200;
+int OK =ST.executeUpdate( sql );
+

@@ -1,0 +1,758 @@
+[ 강사컴퓨터  ip주소확인]
+시작-> 실행 => cmd  => 확인
+C:\Documents and Settings\user1>ipconfig
+강사컴퓨터ip주소:  203.236.209.213
+
+시작 -> 실행   \\203.236.209.213
+시작 -> 실행   http://203.236.209.213
+
+
+순서1]  JDK설치
+http://www.oracle.com/technetwork/java/index.html =>java se 다운로드
+http://java.sun.com -> java se => 다운로드
+C:\Program Files\Java\jdk1.6.0_27
+
+
+순서2] 
+ 이클립스 다운로드 
+http://www.eclipse.org
+http://www.eclipse.org => 오른쪽상단 노란색 download클릭 => 
+                                     2번째 J2EE다운  windows32bit클릭  
+///////////////////////////////////////////////////////////////////////////////////
+
+순서3] 바탕화면 -> 내컴퓨터 -> 오.버 -> 속성 => 고급탭(4번째)
+    고급탭 ->환경변수 -> 하단(시스템변수)
+     path -> 편집
+     C:\Program Files\Java\jdk1.6.0_20\bin;기존껏%SystemRoot%~
+
+    시작-> 실행 => cmd  => 확인
+    C:\Documents and Settings\user1> java  -version
+    C:\Documents and Settings\user1> path   
+///////////////////////////////////////////////////////////////////////////////////
+
+
+[자바프로젝트 새로운프젝트 생성]
+ File -> new => project... => javaProject
+ 플젝이름: Day1108
+  src -> 오.버 => new =>   package => net.hb.day08
+  net.hb.day08-> 오.버 => new => class  => Test 
+  net.hb.day08 -> 오.버 => new => class  => Father
+  net.hb.day08 -> 오.버 => new => interface  => Imother
+
+    Day1108 구조확인 
+     |---- src        
+     |        |--net.hb.day08
+     |            |--Test.java======> main함수에서 자바 기본출력 연습
+     |            |--Father.java
+     |            |--Imother.java
+     |-----jre System Library(jdk버젼연결)------ 이것손대지 마세요  
+///////////////////////////////////////////////////////////////////////////////////
+
+[ 이클립스환경   글꼴변경,라인번호, 칼라, 창보기]
+이클립스메뉴 window -> 맨마지막 Preferences
+1) 글꼴변경
+General -> Appearance -> Colors and Fonts -> Basic
+               Text Font => 오른쪽에 있는 Edit...버튼클릭 글꼴변경
+
+2) 라인번호 보여주기
+General -> Editors -> Text Editors  => Show line numbers 체크
+
+3) 칼라변경
+java -> Editor => Systax Coloring => 중앙에 Element
+           java => classes클릭후 오른쪽 Enable체크선택  red색선택
+           java => interfaces클릭후 오른쪽 Enable체크선택  red색선택
+
+4)  Window메뉴 -> Show View에서
+     Console선택
+     Problems선택(other... General에서 Problems선택)
+     Server -> servers도 선택하세요 
+
+
+5) java언어는 객체지향언어 = OOP  = Object  Orientied Programming
+   OOP특징 - 추상화(상속,메소드),
+                  은닉화(접근지정),
+                  상속성(class,interface), 
+                  다형성(함수적용)
+///////////////////////////////////////////////////////////////////////////////////
+
+
+[자바기초 파워포인트  다운로드]
+http://www.jabook.com/  
+소설자바4판 -> 오른쪽중간쯤 => 소설같은자바 4th Edition의 강의자료 
+강의자료(전체ppt)전체다운 
+
+소설jsp2 -> 오른쪽중간쯤 => 소설같은JSP Second Edition의 강의자료 
+강의자료(전체ppt)전체다운
+///////////////////////////////////////////////////////////////////////////////////
+
+
+순서4]   웹서버설치 다운로드
+http://jakarta.apache.org/ ==>왼쪽하단에서  Tomcat선택
+http://tomcat.apache.org/
+  왼쪽 Download클릭해서 tomcat7.0 클릭해서 
+  Binary Distribution에서 
+  32-bit/64-bit Windows Service Installer (pgp, md5) 클릭
+///////////////////////////////////////////////////////////////////////////////////
+
+
+순서5]  이클립스에서 톰캣Tomcat setting
+       window메뉴 -> preferences ->server->Installed Runtimes -> add -> 
+       Apache Tomcat7.0 -> next ->
+       Browse -> C:\Program Files\Apache Software Foundation\Tomcat 7.0 (확인) ->
+       finish  -> ok
+
+     Window메뉴 -> Show View에서
+       other... Server에서 servers도 선택하세요 
+   
+    하단에 있는 console, problems,servers탭있어요.
+    servers탭에서 오.버 => new => Tomcat7.0선택하고 next클릭->다음 
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+순서6] OracleXE설치(패스워드:oracle)  
+     ※ oracle port변경
+        시작 -> 실행  => cmd => 확인
+        1.  cmd창 ->  sqlplus   system/oracle
+        2.  select dbms_xdb.getHttpPort() from dual;  ←포트확인
+        3.  exec dbms_xdb.setHttpPort(9000); ← 8080에서 9000으로 변경   
+        4. 웹브라우저 :  http://localhost:9000/apex
+	         웹브라우저 :  http://127.0.0.1:9000/apex
+	         웹브라우저 :  http://211.48.40.89:9000/apex
+               (포트가 안바뀔때 :  제어판 -> 관리도구 ->서비스)    
+               :  OracleServiceXE , OracleXETNSListener  (중지시켰다가 시작)
+    
+      ※ 사용자 계정만들기
+         1. 웹브라우저 : http://localhost:9000/apex
+         2. 관리자계정으로접속  : system/oracle   
+         3. 사용자계정만들기
+              관리 -> 데이터베이스사용자 -> 생성 
+              scott/tiger     ,  user10/pass10
+               create table,  create  view, create sequence(체크)
+         4. 로그아웃후  scott/tiger로 접속해볼것 
+   
+    ※오라클접속이 안될때
+         시작->설정->제어판->관리도구->서비스 에서 확인할것
+          OracleServiceXE           시작됨
+          OracleXETNSListener  시작됨 
+
+순서7] oracle연동
+    ※ 파일복사 
+    C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar 	
+    ① C:\Program Files\Java\jdk1.7.0_03\jre\lib\ext 밑에
+           ojdbc14.jar 를  복사
+           el-api.jar 를  복사
+           jsp-api.jar 를  복사
+           servlet-api.jar 를  복사
+    ② C:\Tomcat 7.0\lib 밑에 
+           ojdbc14.jar 를  복사
+
+     ※QuantumDB셋팅(eclipse에서)
+     1. window -> open perspactive -> other -> QuantumDB -> ok
+     2. Database Bookmarks(오른버튼) -> New Bookmark -> Add driver ->
+        Add External jar -> C:\Tomcat 6.0\lib\ojdbc14.jar를 선택 ->
+        Browse -> oracle.jabc.driver.OracleDriver(선택) -> ok  ->
+        Type -> oracle (확인할것) -> finish
+     3. oracle.jdbc.driver...를 선택 -> next ->   
+         ----Connection details----
+         userid : scott
+         password : tiger
+         Host name : localhost    (or  127.0.0.1) 
+         port : 1521 
+         Database name : xe 
+
+        입력하고  -> next  -> name -> oracledb(맘대로입력) -> next ->
+        Show selected schemas -> add -> ok -> scott(선택) -> ok -> finish
+
+순서8] 오라클우편번호넣기 - (방법1)
+1) c:\에다    schema.sql, zipcode.sql를 복사
+2) sql> start c:\schema.sql   (or   sql> @ c:\schema.sql)
+   sql> start c:\zipcode.sql 
+
+
+순서9] 오라클우편번호넣기 - (방법2)
+1) http://www.zipfinder.co.kr 에서  우편번호 다운로드받기(type2)
+   엑셀로 읽어들여서 zipcode.csv로 변환한다
+   zipcode.csv를  c:\에 저장한다.
+
+2) cmd창에서   sqlplus   scott/tiger   입력
+sql>   에서 작성하시오
+
+create table zipcode(
+seq       number(5,0) not null  ,
+zipcode  varchar2(7) not null,
+sido       varchar2(6) not null,
+gugun    varchar2(30) not null,
+dong      varchar2(50) not null,
+ri           varchar2(80),
+bunji      varchar2(20),
+constraint  zipcode_pk  primary key (seq));
+
+3)탐색창에서  zipcode.ctl를 만들어서 editplus로 열기
+c:\oraclexe\app\oracle\product\10.2.0\server\BIN\zipcode.ctl 
+파일을 아래와 같이 만듬 (text문서)
+  (마지막에  ; 을 넣으면 절대안됨)
+
+load  data
+infile  'c:\zipcode.csv'
+insert
+into  table zipcode
+fields terminated by ","
+TRAILING  NULLCOLS
+(zipcode,
+ sido,
+ gugun,
+ dong,
+ ri,
+ bunji,
+ seq)
+
+4)cmd창에서
+1.  경로바꾸기 : cd  c:\oraclexe\app\oracle\product\10.2.0\server\bin
+2.  명령어입력 : sqlldr  userid=scott/tiger  control=zipcode.ctl  log=zipcode.log
+
+[형식]
+ sqlldr  userid=[오라클아이디]/[비밀번호]  control=zipcode.ctl  log=zipcode.log  입력하기
+/////////////////////////////////////////////////////////////////////////////
+
+
+순서10] 환경설정
+ 방법1)내컴퓨터 -> 속성->고급->환경변수-> 시스템변수->새로만들기
+  
+    변수이름 : CLASSPATH
+    변수값 : .;C:\Tomcat 7.0\lib\servlet-api.jar;
+
+ 방법2)C:\Tomcat 7.0\common\lib\servlet-api.jar파일을
+       C:\Program Files\Java\jdk1.6.0_27\jre\lib\ext밑에 복사
+       (권장 X)
+
+
+
+
+순서11] 웹브라우져
+   - http://localhost:9000/폴더명/servlet/파일명
+   ex)http://localhost:9000/WebTest/servlet/HelloServlet
+      http://localhost:9000/WebTest2/index.html
+========================================================================
+순서12]  Eclipse의 Dynamic Web Project의 구조
+  Day1127
+     |
+     |---- src          ---- *.java (class파일, servlet파일)
+     | 
+     |---- build        
+     |          |--classes ---- *.class(컴파일된파일)
+     |                                (class파일, servlet파일)
+     |---- WebContent
+                  |
+                  |--MATA-INF
+                  | 
+                  |--WEB-INF
+                  |          |
+                  |          |---lib       -- *.jar(라이브러리파일) - cos.jar, mail.jar등
+                  |          |---web.xml   --  명세서작성
+                  |
+                  |-- *.jsp,  *.js,   *.html,  *.css, 이미지폴더...
+=======================================================================
+순서13] Servlet
+ : API도움말 (http://localhost:8080/tomcat-docs/servletapi/index.html)
+==================================================================
+import  java.sql.*;
+import  java.io.*;
+import  java.util.Date ;
+import javax.servlet.http.*;
+import javax.servlet.*;
+
+import common.DBSQL;
+import common.DBbean;
+
+
+
+	protected void user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			response.setCharacterEncoding("euc-kr");
+			response.setContentType("text/html;charset=euc-kr") ;
+			PrintWriter  out = response.getWriter();
+			out.println("<h2>????Action.java</h2>") ;
+			
+	} //end
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		user(request, response);
+	} //end
+
+   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		user(request, response);
+	} //end
+
+} //class END
+==================================================================
+
+1. 클라이언트에서 전달한 값을 서버에서 읽기
+    getParameter() : 값전달
+    getParameterValues() : 여러개의 값전달
+    getParameterNames()  : 파라미터의 이름을 모를때
+    예) Eumeration e = req.getParameterName();
+          while(e.hasMoreElements())
+         {
+               String name = (String)e.nextElement();
+               String value = req.getParameter(name);
+         } 
+
+2. 자카르타 톰캣5.x버젼에서 Get방식으로 데이타를 전달할때 
+   한글이 깨지는 문제점이 있다
+
+   ①한글이 깨지지않은경우
+      response.setContentType("text/html;charset=KSC5601");
+      request.setCharacterEncoding("KSC5601");   //한글코드 Encoding
+      String name = request.getParameter("name");
+
+   ②한글이 깨지는경우
+      response.setContentType("text/html;charset=KSC5601");
+      request.setCharacterEncoding("KSC5601");   //한글코드 Encoding
+      String name = new String (
+                     request.getParameter("name").getBytes("8859_1"),"KSC5601");
+
+【 Post방식과 Get방식의 차이 】
+① get  
+   - 주로 웹브라우저가 웹서버에 데이타를 요청할때 사용
+   - 전송데이터 길이의 제한이 있다
+     (ex : 문자열전송)
+   - 데이타가 인코딩되어 URL에 붙는다
+
+② post : 
+   - 웹브라우저에서 웹서버에 데이타를 전달
+   - 전송데이터 길이의 제한이 없다
+     (ex : 대량의 데이터, 파일전송)
+   - 전달되는 데이터가 보이지 않는다
+
+
+3. Servlet의 라이프사이클
+   init()  ->  service()  -> destory()
+
+   doGet() /doPost()
+
+   init() : 최초 1번 호출, 서버실행후 웹브라우저띄울때
+   destroy() : 서버종료1번호출
+   주의)종료시 System.exit(0)금지
+
+4. 타이머
+   ① Timer() : 타이머객체 생성
+   ② void cancel() :타이머종료, Schedule된 작업 취소
+   ③ void schedule(TimerTask task, Date firstTime, long period)
+      :타이머작업을 주어진 시간에 시작하고 주기적으로 실행
+   ④ protected TimerTask() : TimerTask객체생성
+   ⑤ boolean cancel() : 현재 타이머 작업을 취소
+   ⑥ abstract void run() : 타이머작업을 기술
+===================================================================================
+순서14] JSP(Java Server Page)
+   : 서블릿은 성능좋은 웹응용프로그램을 효과적으로 개발할수는 있지만
+     프로그램 작성이 불편하다는 단점이 있다.
+     JSP는 서블릿기술을 바탕으로 ASP처럼쉽고, 빠르게 원하는 웹응용프로그램을
+     작성할수 있다
+
+   【Servlet과 JSP과 비교】
+    ① JSP는 Servlet보다 쉽고 빠르게프로그램 작성
+    ② JSP화면구성을 위한 HTML부분과 프로그램로직(Logic)을 분리할수있다
+       (프로그래머와 웹디자이너가 협력작업할수 있다)
+    ③ 뛰어난 웹컨테이너는 효율적인 코드를 생성하기 때문에 서블릿보다 성능면에서 
+        뛰어나다
+    ④ 서블릿은 자바 프로그램이기 때문에 HTML의 페이지 디자인을 하기 위한 디자인도구가 
+        부족한데,  JSP는 HTML페이지 디자인도구들을 이용해서 작성할수 있다.
+------------------------------------------------------------------------------------
+순서15] JSP기본문법
+1. 스크립트요소 4가지
+(1) 선언문
+     <%!
+           변수 및 메소드를 선언하는 영역
+      %>
+(2)스크립트릿
+     <%
+         코드작성(변수선언, for, while,if등)
+      %>
+(3)표현식
+     <%=변수 또는 메소드%>
+(4)주석
+    i) HTML에서 주석
+       <!-- Fighting <%=name%>-->
+   ii) JSP에서 주석
+       <%-- Fighting<%=name%> --%>
+   iii)스크립트 언어주석
+      <% ........../* 주석*/(여러줄 주석)............%>
+      <% ...........//주석(한줄주석)...........%>
+
+2. 한글처리
+    <%@ page contentType="text/html; charset=euckr" %>
+                                                       (또는 EUC-KR)
+     request.setCharacterEncoding("KSC5601");
+     String name = new String(request.getParameter("name").getBytes("8859-1"), "ksc5601");
+     //톰캣5.x버젼에서 GET방식에서 한글이 깨질때
+
+3. JSP의 지시자와 액션태그
+(1)지시자(Directive)
+① page 지시자
+   - info : 페이지를 설명해 주는 문자열, 속성값의 내용이나 길이의 제한이 없음
+                (JSP페이지의 제목을 붙이는것같은 기능)
+                <%@ page info="JSPStudy.co.kr" %>
+   - language : 기본값 java(생략가능)
+                <%@ page language="java" %>
+   - contentType : 어떤 내용으로 출력할것인지 MIME형태 , ISO-8859-1(표준)
+                <%page contentType="text/html"; charset="EUC-KR">
+   - extends : 상속받은 클래스
+                <% page extends="com.jspstudy.Directive" %>
+   - import : package이름을 지정하지 않고 다른 클래스를 가져와서 사용
+              (쉼표로 구분해서 사용가능, 유일하게 중복사용가능)
+                 <%@ page import="java.util.*, java.sql.*"
+                              import="java.io.*  %>                          
+   - session : HttpSession을 사용할지여부
+                 <% page session="false" %>
+   - buffer : nono으로 지정하면 출력버퍼 사용안함
+                 <%@ page buffer="16kb" %>
+   - autoFlush : true로 설정할경우 자동으로 버퍼삭제(다 채워졌을때)
+                  <%@ page autoFlush="false" %>
+   - isThreadSafe : 동시에 여러브라우저의 요청을 처리할지 여부
+                   <%@ page  isThreadSafe="false" %>
+   - errorPage : 예외가 발생할 경우 넘겨주는 페이지
+                   <%@ page errorPage="Error.jsp" %>
+                    //Error페이지가 나타나지 않을 경우
+	    Explorer에서 도구 -> 인터넷옵션 -> 고급 -> HTTP오류페이지표시(체크해제)
+   - isErrorPage :에러처리 담당 페이지인지 아닌지 여부
+                   <%@ page isErrorPage="true" %>
+   - pageEncoding : 인코딩 지정(기본값 : ISO-8859_1)
+                   <%@ page pageEncoding="EUC-KR" %>
+② include 지시자: JSP파일 삽입
+③ taglib : EL, jstl에서 이용
+
+(2)액션태그
+① include : include지시자 처럼 다른페이지 포함/ 추가시킬 페이지의 처리결과도 포함
+                    (HTML, JSP, Servlet모두가능)
+                    <jsp:include page="로컬URL" flush="true" />
+
+	   <jsp:include page="로컬URL" flush="true">
+	             <jsp:param name="" value="" />
+                    </jsp:include>
+
+② forward : 다른페이지로 이동할때 사용
+                     (현재 page의 모든 내용을 가지고 다른 page로 이동)
+                     <jsp:forword page="로컬URL" />
+                     <jsp:forword page="로컬URL"></jsp:forword>
+
+                     <jsp:forword page='<%=expression%>' />
+
+[참고]
+forward :          현재페이지의 내용을 가지고 이동 
+                     (Http프로토콜로 서버에 요청할때 현재창을 유지할것을 요구)
+sendRedirect()  :  현재페이지의 모든내용을 버리고 이동
+                     (Http프로토콜로 서버에 요청할때 새창을 요구)
+
+③ plug-in : 자바Applet을 JSP페이지에서 사용
+                     <jsp:plugin> 
+
+④ useBean : 자바빈즈와 통신을 위해서 구현
+              <jsp:useBean id=".." class="..." scope="..." />
+              <jsp:setProperty name="...." value="...." />   
+              <jsp:getProperty name="...." value="...." />
+------------------------------------------------------------------------------
+순서15] JavaBean
+  1.Bean이란
+    자바에서 사용하는 컴포넌트(부품)이다. 
+    Bean은 자바에서 컴포넌트를 이용하기위해 만들어 놓은 기술이다.
+    컴포넌트를 사용하면 좋은 이유는 필요할때마다 가져다가 사용할수 있다는 점인데, 
+    jsp에서 자바의 컴포넌트를 이용해서 프로그래밍하는것을 빈즈프로래밍이라한다.
+
+  2.Bean작성방법
+   ①필요한변수 선언(private로 함)
+   ②변수의 이름과 일치하는 setXxx()메소드를 public로 만듬(Xxx는 변수이름)
+   ③변수의 이름과 일치하는 getXxx()메소드를 public로 만듬(Xxx는 변수이름)
+	(bean은 반드시 package안에 만들어야함)
+
+   예)private String name;
+      public void setName(String name)
+      {
+	this.name=name;
+      }
+      public void getName()
+      {
+	return name;
+      }
+
+  3.컴파일
+     Bean은 자바파일(*.java)이므로 javac명령어로 컴파일 한다
+     <형식> javac [옵션][자바소스파일]
+
+  4. Bean태그
+   
+    ① <jsp:useBean id=".."  class=".." scope=".."/>
+
+       id:생성될 빈의 이름을 지정
+       class:빈을 생성하기 위해 빈 클래스를 지정해준다
+       scope:빈을 사용할수 있는 범위
+           - page:해당 jsp페이지 내에서만 존재
+           - request:사용자의 요청(request)을 처리하는 동안 존재
+           - session:사용자가 최초에 접속하여 종료 될때까지 존재
+           - application:해당 어플리케이션이 살아있는 동안 함께 존재
+           (라이프사이클 길이:application > session > request > page>
+
+    ② <jsp:setProperty name=".."  property=".."  value=".." param=".."/>
+       name:사용할 빈의 이름지정  
+       property:값을 저장할 빈의 변수를 지정 (proerty="*"  : 모든변수)
+       value:변수의 값을 지정
+       param:폼으로 넘어온 파라미터의 이름을 지정
+
+    ③ <jsp:getProperty name=".."  property=".."/>
+       name:사용할 빈의 이름지정  
+       property:값을 가져올 빈의 변수를 지정 
+   5. scope
+     : 객체가 사용될 수 있는 범위(Life cycle)
+     (page   <  request   <  session  <  application )
+==========================================================
+순서16] JSP내부객체 = 내장객체 
+    : JSP페이지에서 JSP컨테이너가 제공하는 특별한객체(변수)
+     - request : javax.servlet.http.HttpServletReqeuest 
+                   (파라미터를 포함한 요청을 담고 있는 객체)
+     - response : javax.servlet.http.HttpServletResponse
+                    (요청에 대한 응답)
+     - out : javax.servlet.jsp.JspWriter
+          (페이지의 내용을 담고 있는 출력스트림객체)
+     - session :  javax.servlet.http.HttpSession
+              (세션정보를 담고있는 객체)
+     - application :javax.servlet.ServletContent
+               (모든페이지가 공유할 데이터를 담고있는 객체)
+     - pageContent :javax.servlet.jsp.PageContext
+                         (페이지실행에 필요한 context정보를 담고있는객체)
+     - page  :javax.servlet.jsp.HttpJspPage
+              (JSP페이지의 서블릿객체)
+     - config  :javax.servlet.ServletConfig
+              (JSP페이지의 서블릿설정 데이타 초기화 정보 객체)
+     - exception  :java.lang.Throwable
+                (JSP페이지의 서블릿 실행시 처리하지 못한 예외객체)
+
+==========================================================
+순서17] 세션과 쿠키
+1. 쿠키(Cookie) : (Client 쪽에서...)
+: 클라이언트의 웹 브라우저에 웹 서버가 전달한 정보를 저장
+ex) 자동로그인, 방문 횟수 기록, 오늘하루 창 안띄우기 … 
+
+형식> Set-Cookie: name=value;expiers=date;path=path;domain=domain;secure
+         name=value : 쿠키 이름과 값
+         expires=date : 쿠키 유효 기간
+         domain=domain : 해당 도메인의 컴퓨터에 접근하는 경우에 서버에 전달
+         path=path : 유효한 URL 경로
+         secure :호스트와 보안성이 있는 채널을 사용
+
+         쿠키생성
+           - Cookie cookie = new Cookie(String name, String value);
+           - response.addCookie(name);
+           - cookie.setValue(newValue);
+
+        사용자의 요청에서 모든 쿠키를 얻기
+           - Cookie[] cookies = request.getCookies();
+        원하는 쿠키 검색(이름)
+          - String name = cookies[i].getName();
+          - if( name.equals(“id”) ) { … } 
+        쿠키로부터 값을 얻음
+          - String value = cookies[i].getValue();
+        쿠키 삭제 
+          - 쿠키 생성 후 setMaxAge(0)을 사용
+
+2. 세션 : ( Server쪽에서...)
+   ex) Email, 장바구니
+
+(1) HTTP는 상태 없는 프로토콜 
+    : 웹 브라우저(클라이언트)와 웹서버(서버)는 한번 데이터 전송이 완료되면 연결이 끊김
+     
+(2) 웹 컨테이너 내부에 정보를 저장, 관리하고 저장된 정보에 접근하기 
+    위해 세션 ID를 사용 
+    : 쿠키 사용(JSESSIONID)
+
+(3) 서블릿 : 
+    HttpSession의 메소드
+    : getSession()
+
+(4) JSP    
+    session 내장 객체이용
+            setAttribute()
+	getAttribute()
+            getAttributeNames() 
+            getCreationTime() 
+            getId()
+            getLastAccessedTime()
+            getMaxInactiveInterval()
+            setMaxInactiveInterval()
+            invalidate() 
+            isNew() 
+            removeAttribute()
+
+--------------------------------------------------------------------------------------------
+==========================================================
+순서18] JNDI(Java Naming Directory Interface):원격지 접속
+: 이름을 이용해서 원하는 정보 혹은 자원을 찾을 수 있는 서비스
+  (dbcp를 사용하기위한 JNDI)
+   dbcp : database connection pool
+
+(1) javax.naming 패키지
+(2) InitialContext 클래스	
+     - void bind(String name, Object obj);
+     - void rebind(String name, Object obj);
+     - Object lookup(String name);
+     - NamingEnumeration list(String name)
+
+사용예)
+       try {
+	Context intCnt = new InitialContext();
+	Context env = (Context)initCnt.lookup(“java:comp/env”);
+	ds = (DataSource)env.lookup(“jdbc/DB명”);
+             } catch(Exception ex) {
+	ex.printStackTrace();
+            }
+		…
+		…
+       <%
+	java.sql.Connection conn = ds.getConnection();
+        %>
+------------------------------------------------------------------------------------------------
+※파일업로드/다운로드
+ : 웹브라우저에서 파일을 전송하기 위해서는 폼 구성이 일반적 
+   구성과는 조금 다르다.
+
+<형식>
+  <form method="post" action=".." enctype="multipart/form-data">
+  <input type="file" name="">
+  </form>
+
+   
+   enctype="multipart/form-data"로 전송한 폼에 담겨진 파라미터들에
+   대한 이름과 값을 가져오고 <input type="file">로 지정한 파일을 
+   서버상의 한 폴더에 upload하기위해서는 cos.jar라는 컴포넌트가 
+   필요하다
+   (C:\Tomcat 5.5\common\lib밑에 cos.jar복사할것)
+
+   mime type: 프로토콜로서 바이너리 파일전송에 관한 인터넷표준안
+              (7개 - text, multipart, message, application, 
+              image, audio, video)
+
+   application/octet-stream : application의 형식이 표준정의로 
+   지정되있지 않는 경우 8비트로 전송
+   (ex. jpg -> jpg / wav -> wav )
+  
+------------------------------------------------------------------------------------------------
+==========================================================
+순서19] 표현언어(EL : Expression Language)
+ : EL은 JSTL에 소개된 내용으로 JSP2.0에 추가된 기능이며 JSP의 기본문법을 
+   보완하는 역할을 한다
+  (1) EL에서 제공하는 기능
+            -	JSP의 네 가지 기본 객체가 제공하는 영역의 속성 사용
+            -	집합 객체에 대한 접근 방법 제공
+            -	수치 연산, 관계 연산, 논리 연산자 제공
+            -	자바 클래스 메소드 호출 기능 제공
+            -	표현 언어만의 기본 객체 제공
+             표기법 : ${ expr }
+
+  (2) EL이 제공하는 기본 객체
+            -	pageContext
+            -	pageScope
+            -	requestScope
+            -	sessionScope
+            -	applicationScope
+            -	param
+            -	paramValues
+            -	header
+            -	headerValues
+            -	cookie
+            -	initParam
+
+  (3)표현언어에서 자바메소드를 사용 
+     - 자바클래스작성
+     - 태그라이브러리에 대한 설정정보를 담고 있는 tld파일을 작성
+     - web.xml에 tld파일을 사용할수 있는 설정정보를  추가
+     - 자바클래스에 접근하는 jsp파일을 작성
+ 
+
+==========================================================
+순서20] JSTL (JSP Standard Tag Library)
+    - jstl.jar,  standard.jar 두개의 파일이 필요
+      (c:\tomcat5.5\common\lib 복사)
+
+     제공되는 태그의 종류
+     (JSP2.0 규약은 JSTL 1.1을 사용한다)
+
+
+   라이브러리                URI                            Prefix(접두어)      예시
+   -----------------------------------------------------------------------------------------------
+   Core(코어)       http://java.sun.com/jsp/jstl/core            c             <c:tagname..>
+   XML              http://java.sun.com/jsp/jstl/xml             x             <x:tagname..>
+   국제화           http://java.sun.com/jsp/jstl/fmt            fmt            <fmt:tgname..>
+   DB               http://java.sun.com/jsp/jstl/sql              sql              <sql:tagname..>
+   함수(Function)   http://java.sun.com/jsp/jstl/functions      fn             fn:functionName(..)
+  ------------------------------------------------------------------------------------------------
+
+ <형식>
+
+(1)JSTL core
+   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   
+
+   변수설정 : <c:set var="" value="" scope=""/>
+   제거 :     <c:remove var="" scope="{page|request|session|application}"/>
+   출력 :     <c:out var="" />
+   반복 :     <c:forEach   items="" delims="" begin="" end=""  step="" var="" varStatus=""/>
+              <c:forTonken items="" delims="" begin="" end=""  step="" var="" varStatus=""/>
+   조건 :     <c:if test="조건" var="변수" scope=""/>
+   선택 :     <c:choose>
+                  <c:when test="조건">내용</c:when>         //만족할때
+                  <c:otherwise>내용</c:otherwise>             //만족하지 않을때
+              </c:choose>
+   자원접근 : <c:import url="" var="" scope="" varReader="" charEncoding=""/>
+   이동:      <c:redirect url=""/>
+   url생성:   <c:url var="" value="" scope=""/>  
+
+(3)JSTL fmt
+   <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+   한글처리 : <fmt:requestEncoding value=""/>
+
+
+(4)JSTL sql
+   <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+  
+   접속 : <sql:setDataSource url="" driver="" user="" password="" var="" scope=""/>
+   DML  : <sql:query sql="" dataSource="" var="" />  ==> select
+          <sql:update sql="" dataSource="" var=""/>  ==> inset,delete,update,create등
+
+------------------------------------------------------------------------------------------------------------
+순서21] 모델2와 MVC패턴
+1. 모델1(Model1) vs 모델2(Model2)
+(1)모델1
+    장점 : ① 단순한 페이지흐름으로 인해 개발기간이 단축된다
+           ② MVC구조에 대한 추가적인 교육이 필요없고,개발팀의 팀원의 수준이
+              높지 않아도 된다
+           ③ 중소형 프로젝트에 적합하다
+    단점 : ① 웹 어플리케이션이 복잡해질수록 유지보수가 힘들다
+           ② 디자이너와 개발자 간의 원활한 의사소통이 필요하다
+
+(2)모델2
+    장점 : ① 비즈니스로직(Business Logic)과 뷰(View)의 분리로 인해 어플리케이션이 
+              명료해지며 유지보수와 확장이 용이하다
+           ② 개발자와 디자이너의 작업이 분리되어져 역할과 책임구분이 명확하다
+    단점 : ① 개발초기에 구조 설계를 위한 시간이 많이 소요되므로 개발기간이 
+              증가한다
+           ② MVC구조에 대한 개발자들의 이해가 필요해서 개발팀의 팀원의 높은
+              수준이 요구된다
+
+
+2. MVC(Model-View-Controller)패턴
+    ① 뷰(View) - JSP 페이지 또는 서블릿(Servlet)
+    ② 모델(Model) - 자바빈, 자바객체 또는 EJB(Enterprise Java Bean)의 entity Bean
+    ③ 컨트롤러(Controller) - 서블릿(Servlet),JSP페이지 또는 EJB(Enterprise Java Bean)의
+                                        sessionBean
+----------------------------------------------------------------------
+순서21]썸네일(Thumbnail)
+ : 원본이미지와 다르게 별도의 작은 이미지 제공
+  (jai_codec.jar, jai_core.jar, mlibwrapper_jai.jar필요)
+ 
+  - JAI(Java Advance Imaging)API는 100여개의 이미지 오퍼렌드를 제공
+  - Byte,UShort, Short, 32-bit int, float/double, n-banded images
+  - Image File입출력으로 bmp, gif, fpx,jpeg, png, pnm, tiff등
+
+   <형식>
+   import javax.media.jai.JAI;
+   RenderedOp im = JAI.create("fileload", param);

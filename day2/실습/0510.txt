@@ -1,0 +1,6 @@
+jsp과정
+
+html+css+javaScript+DB연결 => 웹브라우저
+
+작업폴더
+C:\zoom\my

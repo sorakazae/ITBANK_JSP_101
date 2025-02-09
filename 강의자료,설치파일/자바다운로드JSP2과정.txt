@@ -1,0 +1,686 @@
+===========================JSP===============================
+1주-HTML태그및 CSS, JavaScript
+2주-DB연결, SQL문, 신규등록
+3주-전체출력, 수정, 삭제처리
+4주-List페이징, Template, 파일업로드
+
+
+[자바JDK 관련사이트]
+ 첫번째 jdk찾는방법
+ http://www.oracle.com/technetwork/java/index.html
+
+[이클립스 다운로드]
+http://www.eclipse.org => 오른쪽상단 노란색 download클릭 =>  J2EE첫번째항목
+      
+[tomcat웹서버다운로드]
+http://jakarta.apache.org/ ==>왼쪽하단에서  Tomcat선택
+http://tomcat.apache.org/
+  왼쪽 Download클릭해서 tomcat7.0 클릭해서 
+  core에서 
+  32-bit/64-bit Windows Service Installer (pgp, md5) 클릭해서 다운 받으세요
+
+톰캣은 경로설치 C:\Tomcat 7.0  설치
+[이클립스 톰캣Server연결설정전 반드시 톰캣서버 서비스 정지= stop]
+톰캣설치후 반드시 바탕화면 상태바 날씨표시근처 톰캣아이콘클릭후
+반드시 서비스를 stop시킨후 
+startup type: disabled 꼭해야만  이클립스랑  톰캣연결가능  <===============꼭꼭꼭확인
+
+
+[오라클은  oracleXEUniv.exe설치]
+오라클은 자동으로  C:\루트에 설치되요. 
+(오라클설치시 계정id는 system자동으로 표시  비밀번호: oracle, oracle)
+오라클 설치 중간에  오라클Listenerport번호 1521자동으로 표시됩니다  <===============꼭꼭꼭확인
+C:\oraclexe경로에 설치
+
+[ 오라클포트랑  톰캣포트 충돌발생 포트변경 ]
+C:\Documents and Settings\user> sqlplus  system/oracle
+SQL> select dbms_xdb.getHttpPort() from dual;
+SQL> exec dbms_xdb.setHttpPort(9000);       <===============꼭꼭꼭변경
+SQL> select dbms_xdb.getHttpPort() from dual;
+SQL> commit ;
+SQL> drop  table  insa ;
+
+SQL> create  table  insa(     <===============처음한번만 작성하세요 
+   sabun   number(4) primary key,
+   name   varchar2(10) not null  ,
+   nalja  date  not null,
+   pay     number(3)   not null
+ ); 
+
+SQL> commit ;
+SQL> insert into insa values( 1100, 'LEE',   sysdate,  71 ) ;
+SQL> insert into insa values( 2200, 'GOO', sysdate,  92 ) ;
+SQL> commit ;
+SQL> select  * from  insa ;
+SQL> select  sabun, name, pay  from  insa ;
+
+SQL> exit;   수업끝나고 오라클종료할때 하세요
+C:\Documents and Settings\user> exit
+
+
+[이클립스설치  C:\Mtest폴더\my2에 설치하세요]
+C:\Mtest\eclipse-jee-juno-SR1-win32\eclipse\ elipse.exe => 오.버 => 바로가기 만들기 
+이클립스 작업폴더 workspace경로는  C:\Mtest\my2폴더 하세요
+
+
+[이클립스에서 자바프로젝트 생성]
+File -> new => project... java project선택하세요
+플젝: Day1126
+       src -> 오.버 => new => package
+        |--net.hb.day26 -> 오.버 => new => class
+              |---First   main함수 체크  - 배열, ArrayList, Vector
+
+[이클립스 환경설정]
+window메뉴 맨마지막 preperences...
+글꼴변경
+왼쪽 1번째항목  General -> Appearance
+            Color and Fonts => 중앙에 Basic => Text Font( CVS바로위에 있음) 
+            Edit버튼클릭해서  (같은글꼴로 하세요 에러찾기 편해요)
+	  글꼴: Comic Sans MS    스타일: 굶게   크기: 16
+
+class및interface칼라색 변경
+왼쪽  6번째항목  java -> Editor => Syntax Coloring   
+               화면중앙에 제목: Element  => java 
+               classes  오른쪽에  Enable체크  red색체크  <======== 칼라변경하면 더 좋아요
+               interfaces  오른쪽에  Enable체크  red색체크 
+
+window메뉴 -> Show View에서
+     Package Explorer  (왼쪽 프로젝트 탐색 창)
+     Console선택
+     Problems선택(other... General에서 Problems선택)
+
+[이클립스 하단에 있는 console, problems환경설정]
+window메뉴 Show view 클릭 console선택
+window메뉴 Show view 클릭 other... General에서 problems선택
+_________________________________________________________________________________________________________________________________________________________
+
+[이클립스에서 톰캣tomcat setting ]
+       window메뉴 -> preferences ->server-> Runtime Enviroments -> Add...버튼-> 
+       Apache Tomcat7.0 -> next ->  Tomcat installation Directory  
+       Browse...버튼클릭해서 톰캣경로클릭 -> C:\Tomcat 7.0 (확인) ->
+       finish  -> ok
+
+     Window메뉴 -> Show View에서
+     other... Server에서 servers도 선택하세요 
+   
+    하단에 있는 console, problems,servers탭있어요.
+    servers탭에서 오.버 => new => Tomcat7.0선택하고 next클릭->다음 
+   servers탭에서 new wizard...
+
+[이클립스에서  Web프로젝트프로젝트 생성]
+ File -> new =>  Dynamic Web Project의 구조
+ Web0311
+   |-- src-> 당분간은 건드리지 마세요  .java문서
+   |-- WebContent-> 오.버 => new =>  jsp파일만 우선 하나만 생성 two.jsp
+         |--images폴더도 생성하세요 WebContent-> 오.버 => new => folder
+         |--MATA-INF
+         |--WEB-INF
+            |--lib <==== odbjc14.jar붙여넣기함/ 아래부분 servlet-api.jar붙여넣기
+            |--web.xml 
+         |--two.jsp
+         |--twoSave.jsp
+         |--twoList.jsp
+_________________________________________________________________________________________________________________________________________________________
+[ Servlet  서블릿연결 - XP환경연결 ]
+C:\Tomcat 7.0\lib\servlet-api.jar복사한후 반드시==꼭꼭꼭 하는것이 좋아요(권장사항)
+   |-- WebContent
+         |--images폴더도 생성하세요 WebContent-> 오.버 => new => folder
+         |--MATA-INF
+         |--WEB-INF
+            |--lib <==== odbjc14.jar붙여넣기/  servlet-api.jar파일도 붙여넣기하세요 
+
+__________________________________________________________________________________________________________________________________________________________
+[ 오라클포트랑  톰캣포트 충돌발생 포트변경 다시한번 확인 ]
+C:\Documents and Settings\user> sqlplus  system/oracle   <======오라클들어가는 명령어 꼭꼭외우세요
+SQL> select dbms_xdb.getHttpPort() from dual;
+SQL> exec dbms_xdb.setHttpPort(9000); 
+SQL> select dbms_xdb.getHttpPort() from dual;
+SQL> commit ;
+SQL> exit ;  수업끝내고 마지막에 꼭 오라클종료하세요
+
+=========================================================================================
+[ JSP기본문법 ]
+1. 스크립트요소 4가지
+(1) 선언문
+     <%!
+           변수 및 메소드를 선언하는 영역  private접근지정자
+      %>
+(2)스크립트릿
+     <%
+         코드작성(변수선언, for, while,if등)
+      %>
+(3)표현식
+     <%=변수 또는 메소드%>
+
+
+[이클립스에서  Web프로젝트프로젝트 생성]
+ File -> new =>  Dynamic Web Project의 구조
+ Web1230
+  |--src => 오.버 => new => package  ==> common팩키지먼저 생성
+      |--common팩키지 => 오.버 => new =>    class 선택  상속받을 클래스 없음   
+          |--DBbean.java 
+          |--DB.java 
+          |--DBSQL.java 
+      |--mvc팩키지 => 오.버 => new => servlet( Listener밑에 있어요 class가 아님)
+          |--InsertAction.java   상속자동표시 HttpServlet  같이해요. 혼자하지 마세요
+          |--ListAction.java      상속자동표시  HttpServlet   같이해요. 혼자하지 마세요
+   |-- WebContent-> 오.버 => new =>  jsp파일만 우선 하나만 생성 two.jsp
+         |--images폴더도 생성하세요 WebContent-> 오.버 => new => folder
+         |--MATA-INF
+         |--WEB-INF
+            |--lib <====== odbjc14.jar붙여넣기/  servlet-api.jar붙여넣기
+            |--web.xml 
+         |--two.jsp
+         |--twoSave.jsp
+         |--twoList.jsp
+
+------------------------------------------------------------------------------------------------------------------
+[ Servlet  서블릿 ]
+//C:\Tomcat 7.0\lib\servlet-api.jar복사한후 반드시
+   |-- WebContent
+         |--images폴더도 생성하세요 WebContent-> 오.버 => new => folder
+         |--MATA-INF
+         |--WEB-INF
+            |--lib <====== odbjc14.jar붙여넣기/  servlet-api.jar붙여넣기
+
+import  java.sql.*;
+import  java.io.*;
+import  java.util.Date ;
+import javax.servlet.http.*;
+import javax.servlet.*;
+
+ public  class  ListAction  extends  HttpServlet{
+       protected void user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    response.setCharacterEncoding("euc-kr");
+	    response.setContentType("text/html;charset=euc-kr") ;
+	    PrintWriter  out = response.getWriter();  //반드시 임포트 import  java.io.* ; 
+	    out.println("<h2>????Action.java 문서이름 수정</h2>") ;		
+        } //end
+	
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	user(request, response);  //꼭하세요
+        }//end
+
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	user(request, response);  //꼭하세요
+        } //end
+
+} //class END
+
+
+========================[WEB-INF/web.xml문서]================================
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Web1230</display-name>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+ <servlet>
+    <servlet-name>ListAction</servlet-name>
+    <servlet-class>mvc.ListAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListAction</servlet-name>
+    <url-pattern>/list.do</url-pattern>
+  </servlet-mapping>
+
+ <servlet>
+    <servlet-name>InsertAction</servlet-name>
+    <servlet-class>mvc.InsertAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertAction</servlet-name>
+    <url-pattern>/insert.do</url-pattern>
+  </servlet-mapping>
+
+  </web-app>
+
+========================[WebContent/two.jsp문서]================================
+	<h1><font color=red> [two.jsp-MVC2]</font></h1>
+	<form  name=myform   method="post"   action="insert.do">
+		사번: <input type="text"  name="sabun">  &nbsp;  
+		이름: <input type=text  name="name"     size=12> &nbsp;
+		급여: <input type=text  name="pay"       size=10> &nbsp;
+		<input type=submit  value="submitMVC2저장" >
+		<input type=reset  value="취 소">
+	</form>
+
+
+[ JSP내부객체 ]
+    : JSP페이지에서 JSP컨테이너가 제공하는 특별한객체(변수)
+     - request : javax.servlet.http.HttpServletReqeuest 
+                   (파라미터를 포함한 요청을 담고 있는 객체)
+     - response : javax.servlet.http.HttpServletResponse
+                    (요청에 대한 응답)
+     - out : javax.servlet.jsp.JspWriter
+          (페이지의 내용을 담고 있는 출력스트림객체)
+     - session :  javax.servlet.http.HttpSession
+              (세션정보를 담고있는 객체)
+     - application :javax.servlet.ServletContent
+               (모든페이지가 공유할 데이터를 담고있는 객체)
+     - pageContent :javax.servlet.jsp.PageContext
+                         (페이지실행에 필요한 context정보를 담고있는객체)
+     - page  :javax.servlet.jsp.HttpJspPage
+              (JSP페이지의 서블릿객체)
+     - config  :javax.servlet.ServletConfig
+              (JSP페이지의 서블릿설정 데이타 초기화 정보 객체)
+     - exception  :java.lang.Throwable
+                (JSP페이지의 서블릿 실행시 처리하지 못한 예외객체)
+=================================================================================
+ [문서에 값 전달  ] 
+ 클라이언트에서 전달한 값을 서버에서 읽기
+    getParameter() : 값전달
+    getParameterValues() : 여러개의 값전달
+    getParameterNames()  : 파라미터의 이름을 모를때
+    예) Eumeration e = req.getParameterName();
+          while(e.hasMoreElements())
+         {
+               String name = (String)e.nextElement();
+               String value = req.getParameter(name);
+         } 
+=================================================================================
+ [한글처리]
+    <%@ page contentType="text/html; charset=euc-kr" %>
+                                                    
+    
+<%
+     request.getParameter("euc-kr") ;
+     request.setCharacterEncoding("euc-kr");
+     String name = new String(request.getParameter("name").getBytes("8859-1"), "ksc5601");
+ %>
+ 
+
+액션태그
+① include : include지시자 처럼 다른페이지 포함/ 추가시킬 페이지의 처리결과도 포함
+                    (HTML, JSP, Servlet모두가능)
+                <jsp:include page="로컬URL" flush="true" />
+
+	   <jsp:include page="로컬URL" flush="true">
+	             <jsp:param name="" value="" />
+                </jsp:include>
+
+② forward : 다른페이지로 이동할때 사용
+                     (현재 page의 모든 내용을 가지고 다른 page로 이동)
+                     <jsp:forword page="로컬URL" />
+                     <jsp:forword page="로컬URL"></jsp:forword>
+
+                     <jsp:forword page='<%=expression%>' />
+
+[참고]
+forward :          현재페이지의 내용을 가지고 이동 
+                     (Http프로토콜로 서버에 요청할때 현재창을 유지할것을 요구)
+sendRedirect()  :  현재페이지의 모든내용을 버리고 이동
+                     (Http프로토콜로 서버에 요청할때 새창을 요구)
+
+③ plug-in : 자바Applet을 JSP페이지에서 사용
+                     <jsp:plugin> 
+
+④ useBean : 자바빈즈와 통신을 위해서 구현
+              <jsp:useBean id=".." class="..." scope="..." />
+              <jsp:setProperty name="...." value="...." />   
+              <jsp:getProperty name="...." value="...." />
+------------------------------------------------------------------------------------------------------------------
+[ JavaBean ]
+  1.Bean이란
+    자바에서 사용하는 컴포넌트(부품)이다. 
+    Bean은 자바에서 컴포넌트를 이용하기위해 만들어 놓은 기술이다.
+    컴포넌트를 사용하면 좋은 이유는 필요할때마다 가져다가 사용할수 있다는 점인데, 
+    jsp에서 자바의 컴포넌트를 이용해서 프로그래밍하는것을 빈즈프로래밍이라한다.
+
+  2.Bean작성방법
+   ①필요한변수 선언(private로 함)
+   ②변수의 이름과 일치하는 setXxx()메소드를 public로 만듬(Xxx는 변수이름)
+   ③변수의 이름과 일치하는 getXxx()메소드를 public로 만듬(Xxx는 변수이름)
+	(bean은 반드시 package안에 만들어야함)
+
+   예)private String name;
+      public void setName(String name)      {	this.name=name;      }
+      public void getName()      { return name;      }
+
+  3.컴파일
+     Bean은 자바파일(*.java)이므로 javac명령어로 컴파일 한다
+     <형식> javac [옵션][자바소스파일]
+
+  4. Bean태그
+    ① <jsp:useBean id=".."  class=".." scope=".."/>
+
+       id:생성될 빈의 이름을 지정
+       class:빈을 생성하기 위해 빈 클래스를 지정해준다
+       scope:빈을 사용할수 있는 범위
+           - page:해당 jsp페이지 내에서만 존재
+
+    ② <jsp:setProperty name=".."  property=".."  value=".." param=".."/>
+       name:사용할 빈의 이름지정  
+       property:값을 저장할 빈의 변수를 지정 (proerty="*"  : 모든변수)
+       value:변수의 값을 지정
+       param:폼으로 넘어온 파라미터의 이름을 지정
+
+    ③ <jsp:getProperty name=".."  property=".."/>
+       name:사용할 빈의 이름지정  
+       property:값을 가져올 빈의 변수를 지정 
+   5. scope
+     : 객체가 사용될 수 있는 범위(Life cycle)
+     (page   <  request   <  session  <  application )
+
+=========================META-INF/context.xml=============================================
+<context>
+	<Resource  name="jdbc/snow"
+                 auth="Container"
+                 type="javax.sql.DataSource"
+                 username="system"
+                 password="oracle"
+                 driverClassName="oracle.jdbc.driver.OracleDriver"
+                 factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+                 url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+                 maxActive="500"
+                 maxIdle="100">
+         </Resource>
+</context>
+________________________________________________________________________________________________________________________________________
+
+[ JNDI(Java Naming Directory Interface):원격지 접속 ]
+: 이름을 이용해서 원하는 정보 혹은 자원을 찾을 수 있는 서비스
+  (dbcp를 사용하기위한 JNDI)
+   dbcp : database connection pool
+
+  public  DBSQL( ){ 
+	CN= DB.getConnection(); //DB.java
+	try{
+	   //Context initCtx=new InitialContext();
+	   //Context envCtx=(Context)initCtx.lookup("java:comp/env");
+	   //DataSource ds=(DataSource)envCtx.lookup("jdbc/snow");
+	   //CN=ds.getConnection();
+
+	   Context  ct = new  InitialContext( ) ; 
+	   DataSource ds = (DataSource)ct.lookup("java:comp/env/jdbc/snow") ; 
+	   CN=ds.getConnection( ) ; 
+	}catch(Exception ex) {  }
+  }  //생성자 end
+
+
+     <%
+         java.sql.Connection conn = ds.getConnection();
+      %>
+
+public  List  dbSelect( ) { // ListAction.java
+	List  LT = new ArrayList( );
+	try{
+		sql="select  *  from  insa  order by sabun " ;  
+		ST = CN.createStatement();
+		RS=ST.executeQuery(sql) ; 
+		while(RS.next()==true){  
+			DBbean  bean  = new  DBbean( );
+			bean.setSabun(  RS.getInt("sabun")) ;
+			bean.setName(RS.getString("name")) ;
+			bean.setNalja(RS.getDate("nalja"));
+			bean.setPay(RS.getInt("pay"));
+			LT.add(bean);   
+		} //while end
+	}catch(Exception ex) {  }
+	return  LT ;
+} //end
+
+_________________________________________________________________________________________________________________________________________________________________
+<%  //twoList.jsp문서 단독실행불가 ---> ListAction.java => list.do
+	List  list =(List)request.getAttribute("temp");
+	for(int  i=0; i<list.size() ; i++) {
+		DBbean  bean =(DBbean) list.get( i );
+%>		
+	<tr align="center" valign="middle" 
+	onmouseover="this.style.backgroundColor='#FFFF00'"
+	onmouseout="this.style.backgroundColor=''">
+		<td>  <%= bean.getSabun() %>   </td> 
+		<td> <a href="detail.do?idx=<%= bean.getSabun() %>">  <%= bean.getName() %>  </a> </td>
+		<td>  <%= bean.getNalja() %> </td>
+		<td>  <%= bean.getPay() %> </td>
+	</tr>
+ <% } %>
+
+
+======================================================================================
+[파일업로드/다운로드]
+파일의 업로드다운로드 관련사이트
+www.servlets.com=> 왼쪽에서  com.oreilly.servlet=> 중간아래쯤에 cos-26DEC2008.zip선택 다운받음
+WebContent/WEB-INF/lib폴더/cos.jar붙여넣기
+
+ : 웹브라우저에서 파일을 전송하기 위해서는 폼 구성이 일반적 
+   구성과는 조금 다르다.
+
+<형식>
+  <form method="post" action=".." enctype="multipart/form-data">
+  <input type="file" name="">
+  </form>
+
+   
+   enctype="multipart/form-data"로 전송한 폼에 담겨진 파라미터들에
+   대한 이름과 값을 가져오고 <input type="file">로 지정한 파일을 
+   서버상의 한 폴더에 upload하기위해서는 cos.jar라는 컴포넌트가 
+   필요하다
+   (C:\Tomcat 7.0\lib밑에 cos.jar복사할것)
+
+   mime type: 프로토콜로서 바이너리 파일전송에 관한 인터넷표준안
+              (7개 - text, multipart, message, application, 
+              image, audio, video)
+
+   application/octet-stream : application의 형식이 표준정의로 
+   지정되있지 않는 경우 8비트로 전송
+   (ex. jpg -> jpg / wav -> wav )
+  
+
+===========================================================================================
+[표현언어(EL : Expression Language) ]
+ : EL은 JSTL에 소개된 내용으로 JSP2.0에 추가된 기능이며 JSP의 기본문법을 
+   보완하는 역할을 한다
+  (1) EL에서 제공하는 기능
+            -	JSP의 네 가지 기본 객체가 제공하는 영역의 속성 사용
+            -	집합 객체에 대한 접근 방법 제공
+            -	수치 연산, 관계 연산, 논리 연산자 제공
+            -	자바 클래스 메소드 호출 기능 제공
+            -	표현 언어만의 기본 객체 제공
+             표기법 : ${ expr }
+
+  (2) EL이 제공하는 기본 객체
+            -	pageContext
+            -	pageScope
+            -	requestScope
+            -	sessionScope
+            -	applicationScope
+            -	param
+            -	paramValues
+
+  (3)표현언어에서 자바메소드를 사용 
+     - 자바클래스작성
+     - 태그라이브러리에 대한 설정정보를 담고 있는 tld파일을 작성
+     - web.xml에 tld파일을 사용할수 있는 설정정보를  추가
+     - 자바클래스에 접근하는 jsp파일을 작성
+ 
+
+====================================================================================
+[ JSTL (JSP Standard Tag Library) ]
+[JSTL다운로드 관련사이트]
+http://jakarta.apache.org->download -> taglib
+http://tomcat.apache.org/taglibs/standard/
+  
+    - jstl.jar,  standard.jar 두개의 파일이 필요
+      (C:\Tomcat7.0\lib 복사)
+
+     제공되는 태그의 종류
+     (JSP2.0 규약은 JSTL 1.1을 사용한다)
+
+
+   라이브러리                URI                            Prefix(접두어)      예시
+   -----------------------------------------------------------------------------------------------
+   Core(코어)       http://java.sun.com/jsp/jstl/core            c             <c:tagname..>
+   XML              http://java.sun.com/jsp/jstl/xml             x             <x:tagname..>
+   국제화           http://java.sun.com/jsp/jstl/fmt            fmt            <fmt:tgname..>
+   DB               http://java.sun.com/jsp/jstl/sql              sql              <sql:tagname..>
+   함수(Function)   http://java.sun.com/jsp/jstl/functions      fn             fn:functionName(..)
+  ------------------------------------------------------------------------------------------------
+
+ <형식>
+
+(1)JSTL core
+   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
+   변수설정 : <c:set var="" value="" scope=""/>
+   제거 :     <c:remove var="" scope="{page|request|session|application}"/>
+   출력 :     <c:out var="" />
+   반복 :     <c:forEach   items="" delims="" begin="" end=""  step="" var="" varStatus=""/>
+              <c:forTonken items="" delims="" begin="" end=""  step="" var="" varStatus=""/>
+   조건 :     <c:if test="조건" var="변수" scope=""/>
+   선택 :     <c:choose>
+                  <c:when test="조건">내용</c:when>         //만족할때
+                  <c:otherwise>내용</c:otherwise>             //만족하지 않을때
+              </c:choose>
+   자원접근 : <c:import url="" var="" scope="" varReader="" charEncoding=""/>
+   이동:      <c:redirect url=""/>
+   url생성:   <c:url var="" value="" scope=""/>  
+
+(3)JSTL fmt
+   <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+   한글처리 : <fmt:requestEncoding value=""/>
+
+
+(4)JSTL sql
+   <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+  
+   접속 : <sql:setDataSource url="" driver="" user="" password="" var="" scope=""/>
+   DML  : <sql:query sql="" dataSource="" var="" />  ==> select
+          <sql:update sql="" dataSource="" var=""/>  ==> inset,delete,update,create등
+
+regList.jsp문서 샘플JSTL
+<c:forEach  var="item"  items="${list}">	
+   <tr>
+	<td>  ${item.sabun}    </td> 
+	<td>  <a href="detail.action?idx=${item.sabun}"> ${item.name} </a> </td>
+	<td>  <fmt:formatDate value="${item.nalja}"   pattern="yyyy년-MM월-dd일"/>  </td>
+	<td>  ${item.pay} </td>
+  </tr>
+</c:forEach>  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+[ 모델2와 MVC패턴 ]
+1. 모델1(Model1) vs 모델2(Model2)
+(1)모델1
+    장점 : ① 단순한 페이지흐름으로 인해 개발기간이 단축된다
+           ② MVC구조에 대한 추가적인 교육이 필요없고,개발팀의 팀원의 수준이
+              높지 않아도 된다
+           ③ 중소형 프로젝트에 적합하다
+    단점 : ① 웹 어플리케이션이 복잡해질수록 유지보수가 힘들다
+           ② 디자이너와 개발자 간의 원활한 의사소통이 필요하다
+
+(2)모델2
+    장점 : ① 비즈니스로직(Business Logic)과 뷰(View)의 분리로 인해 어플리케이션이 
+              명료해지며 유지보수와 확장이 용이하다
+           ② 개발자와 디자이너의 작업이 분리되어져 역할과 책임구분이 명확하다
+    단점 : ① 개발초기에 구조 설계를 위한 시간이 많이 소요되므로 개발기간이 
+              증가한다
+           ② MVC구조에 대한 개발자들의 이해가 필요해서 개발팀의 팀원의 높은
+              수준이 요구된다
+
+
+2. MVC(Model-View-Controller)패턴
+    ① 뷰(View) - JSP 페이지 또는 서블릿(Servlet)단독실행도 가능
+    ② 모델(Model) - DB처리 
+    ③ 컨트롤러(Controller) - 서블릿(Servlet)문서 , 틀=Framework
+----------------------------------------------------------------------
+[썸네일(Thumbnail) ]
+http://java.sun.com/products/java-media/jai/current.html 치면
+자동으로 아래사이트로 이동
+http://www.oracle.com/technetwork/java/current-142188.html
+첫번째 항목 Java Advanced Imaging API1.1.3 Download page 클릭 맨마지막으로 이동 
+http://download.java.net/media/jai/builds/release/1_1_3/
+ : 원본이미지와 다르게 별도의 작은 이미지 제공
+  (jai_codec.jar, jai_core.jar, mlibwrapper_jai.jar필요)
+ 
+  - JAI(Java Advance Imaging)API는 100여개의 이미지 오퍼렌드를 제공
+  - Byte,UShort, Short, 32-bit int, float/double, n-banded images
+  - Image File입출력으로 bmp, gif, fpx,jpeg, png, pnm, tiff등
+
+   <형식>
+   import javax.media.jai.JAI;
+   RenderedOp im = JAI.create("fileload", param);
+
+
+=========================thumbnailForm.jsp=============================================
+<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<html>
+<head>
+<title>썸네일 이미지 폼</title>
+</head>
+<body>
+<center>
+<h2>썸네일 이미지 폼 예제</h2>
+<form action="thumbnail.jsp" method="post" enctype="multipart/form-data">
+이미지 파일 : <input type="file" name="filename"><p>
+<input type="submit" value="전송">
+</form>
+</center>
+</body>
+</html>
+
+=========================thumbnail.jsp=============================================
+<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@ page import="java.awt.Graphics2D" %>
+<%@ page import="java.awt.image.renderable.ParameterBlock" %>
+<%@ page import="java.awt.image.BufferedImage" %>
+<%@ page import="javax.media.jai.JAI" %>
+<%@ page import="javax.media.jai.RenderedOp" %>
+<%@ page import="javax.imageio.ImageIO" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%
+	//String imagePath=request.getRealPath("image");
+	ServletContext context = getServletContext();
+	String realPath = context.getRealPath( "image" );
+	new File( realPath ).mkdir(); 	
+
+	int size = 1*1024*1024 ; 
+	String filename="";
+	
+	try{
+		MultipartRequest multi=	new MultipartRequest(request,
+		  					  realPath,
+							  size,
+							  "euc-kr",
+							new DefaultFileRenamePolicy());
+		
+		Enumeration files=multi.getFileNames();
+		
+		String file =(String)files.nextElement();
+		filename=multi.getFilesystemName(file);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	ParameterBlock pb=new ParameterBlock();
+	pb.add(realPath+"/"+filename);
+	RenderedOp rOp=JAI.create("fileload",pb);
+	
+	BufferedImage bi= rOp.getAsBufferedImage();
+	BufferedImage thumb=new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
+	
+	Graphics2D g=thumb.createGraphics();
+	g.drawImage(bi,0,0,100,100,null);
+	
+	File file=new File(realPath+"/sm_"+filename);
+	ImageIO.write(thumb,"jpg",file);
+%>
+<html>
+<head>
+<title>이미지 썸네일 예제</title>
+</head>
+<body>
+-원본 이미지-<br>
+<img src="./image/<%=filename %>"><p>
+-썸네일 이미지-<br>
+<img src="./image/sm_<%=filename %>">
+</body>
+</html>
+
+
+============================================================================

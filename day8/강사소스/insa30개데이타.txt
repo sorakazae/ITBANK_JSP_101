@@ -1,0 +1,43 @@
+
+delete from from  insa  ; 
+commit;
+
+insert  into  insa   values(4400, 'first',   sysdate, 40) ;
+insert  into  insa   values(4411, 'two',   sysdate, 41) ;
+insert  into  insa   values(4422, 'three',   sysdate, 42) ;
+insert  into  insa   values(4433, 'aaa3',   sysdate, 43) ;
+insert  into  insa   values(4444, 'aaa4',   sysdate, 44) ;
+insert  into  insa   values(4455, 'aaa5',   sysdate, 45) ;
+insert  into  insa   values(4466, 'aaa6',   sysdate, 46) ;
+insert  into  insa   values(4477, 'aaa7',   sysdate, 47) ;
+insert  into  insa   values(4488, 'aaa8',   sysdate, 48) ;
+insert  into  insa   values(4499, 'ten',   sysdate, 49) ;
+
+insert  into  insa   values(5500, 'apple',   sysdate, 50) ;
+insert  into  insa   values(5511, 'banana',   sysdate, 51) ;
+insert  into  insa   values(5522, 'cherry',   sysdate, 52) ;
+insert  into  insa   values(5533, 'orange',   sysdate, 53) ;
+insert  into  insa   values(5544, 'bbb4',   sysdate, 54) ;
+insert  into  insa   values(5555, 'bbb5',   sysdate, 55) ;
+insert  into  insa   values(5566, 'bbb6',   sysdate, 56) ;
+insert  into  insa   values(5577, 'bbb7',   sysdate, 57) ;
+insert  into  insa   values(5588, 'bbb8',   sysdate, 58) ;
+insert  into  insa   values(5599, 'bbb9',   sysdate, 59) ;
+
+insert  into  insa   values(6600, 'lee',   sysdate, 60) ;
+insert  into  insa   values(6611, 'kim',   sysdate, 61) ;
+insert  into  insa   values(6622, 'goo',   sysdate, 62) ;
+insert  into  insa   values(6633, 'park',   sysdate, 63) ;
+insert  into  insa   values(6644, 'ccc4',   sysdate, 64) ;
+insert  into  insa   values(6655, 'ccc5',   sysdate, 65) ;
+insert  into  insa   values(6666, 'ccc6',   sysdate, 66) ;
+insert  into  insa   values(6677, 'ccc7',   sysdate, 67) ;
+insert  into  insa   values(6688, 'ccc8',   sysdate, 68) ;
+insert  into  insa   values(6699, 'last',   sysdate, 69) ;
+
+commit;
+set  pagesize  550 ;
+set  linesize   550 ;
+
+desc  insa ;
+select  * from insa ;

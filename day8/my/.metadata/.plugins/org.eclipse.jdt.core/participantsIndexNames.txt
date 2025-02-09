@@ -1,0 +1,3 @@
+INDEX VERSION 1.126
+C:\zoom\my\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1894726861.index
+\Web0517\src

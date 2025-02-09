@@ -1,0 +1,325 @@
+※데이타베이스
+     : 많은양의 자료를 특정한 규칙에 맞게 저장장치에 보관하여 필요한 업무에 사용하는 저장매체
+       DBMS :   데이타베이스 안에 있는 데이타를 관리하는것
+                    (읽기,변경,삭제,추가가 가능)
+
+※OracleXEUniv.exe(오라클) 설치
+    1) 웹 : http://localhost:9000/apex
+        ID명  :  system   / pw명 :  oracle  <--관리자계정
+        ID명  :  scott      / pw명 :  tiger    <--사용자계정      
+        SID명:  xe
+     
+    2)콘솔 : cmd 창에서
+       C:\Documents and Settings\user1>  sqlplus  scott/tiger      
+       C:\Documents and Settings\user1>  sqlplus  user10/pass10    
+        ※오라클이 구동되지않을때 확인할것(시작->설정->제어판->관리도구->서비스)	
+            OracleServiceXE         시작됨
+            OracleXETNSListener   시작됨
+---------------------------------------------------------------------------------------------------
+※기본적인 SQL문
+   DDL(Data Definetion Language) : 데이터를 정의어
+   - create, alter, drop, rename, truncate등
+   - 자동커밋이 발생
+
+   DML(Data Manipulation Language) : 데이터를 조작하는 기능
+   - select, insert, delete, update
+   - transcation처리(commit, rollback)
+
+
+1. create문(테이블생성)
+   create table 테이블명(
+         필드이름 데이터타입 [primary key],
+         필드이름 데이터타입 [not null].........);
+예) create table member(name varchar2(20), email varchar2(30));
+
+ == 자료형 ===
+ number : 숫자형
+ int    : 정수형
+ char   : 문자형(고정형)
+ varchar/varchar2 : 문자형(가변형) - 4000byte까지
+ clob : 문자형(4000byte이상일때)   - 최대 4GB
+ blob : binary로저장(그림, 음악등)  - 최대 4GB
+ date : 날짜형
+ timestamp : date형의 확장
+
+ ※시퀀스(sequence) : 자동값증가
+ [형식] 
+  create sequence 시퀀스명
+  [increment by n]         ---> 증가값
+  [start with n]              ---> 시작값    
+
+
+ ==시퀀스주기==
+ create sequence seq_id increment by 1 start with 1 nocycle nocache;    (증가치 1,시작 1)
+(= create sequence seq_id nocycle nocache;)
+ 
+ ==시퀀스 삭제==
+ drop sequence seq_id;
+
+2. drop문
+  drop table 테이블명 : 테이블제거
+  drop table 테이블명 purge : 테이블제거,휴지통비우기
+  (purge recyclebin : 휴지통비우기 
+   flashback table 테이블명 to before drop : 되살리기)
+
+예)drop table member;  (member테이블 제거)
+
+3. alter문(table구조변경)
+   alter table 테이블이름 add 필드이름 데이터타입 [not null];
+   예)alter table member add addr varchar(50);                           
+      (member 테이블에 addr필드 추가)
+
+      alter table 테이블명 add  primary key (필드명)    
+      (기본키설정)
+
+      alter table 테이블명 rename column 컬럼명1 to 컬럼명2;  
+      (컬럼명 바꾸기)
+
+      alter table 테이블명 modify(컬럼명 자료형);    
+      (컬럼수정)
+
+      alter table 테이블명 drop column 컬럼명;
+      (컬럼삭제)
+
+4. desc 테이블명(테이블속성(구조)보기)
+   예) desc member;
+
+5.질의문(Query)  - DML
+(1) select문(테이블의 레코드 검색)
+    select 필드리스트 from 테이블명 
+    [where 조건] 
+    [group by 필드리스트]
+    [having 조건] 
+    [order by 필드리스트 [asc | desc]];     (asc는 생략가능)
+    예) select * from member where addr like '%서울%'
+
+(2) insert문(테이블에 레코드 추가)
+    insert into 테이블명[(필드이름1, 필드이름2....)] values (data1,data2...)
+    예)insert into member(name, email, addr) values ('magic','magic@m.com','서울');
+         insert into member  values ('magic','magic@m.com','서울');
+         insert into insa  values (  4400 ,'LEE', sysdate , 45);
+    예)모든 필드가 NULL값을 허용하는 경우 필드명 생략가능
+       insert into member  values('오이', 27, 'A');
+
+(3) delete문(레코드 삭제)
+    delete from 테이블명 [where 조건]
+    예)delete from member where name = 'magic';
+         delete from member;
+
+(4) update문(데이터의 값변경)
+    update 테이블명 set 필드이름1=data1,필드이름2=data2 ..[where 조건문]
+    예) 
+         update  insa  set  name='green', nalja=sysdate, pay=4  where  sabun=2200 ;
+         update member set tel='123-4567' where name='magic';
+         update member set score=100;
+
+=======================================================================================
+※ 드라이버설치
+   C:\myjava\jdk1.5\jre\lib\ext\밑에
+      mysql-connector-java-5.0.4-bin.jar 복사
+
+【 Database별 Driver 와 connection URL 】
+
+DATABASE  |   VALUE 
+----------------------------------------------------------------------------------
+ORACLE    |  DRIVER  |   oracle.jdbc.driver.OracleDriver 
+               |  URL       |   jdbc:oracle:thin:@hostname:port:SID 
+MSSQL     |  DRIVER  |   com.microsoft.jdbc.sqlserver.SQLServerDriver 
+              |  URL       |   jdbc:Microsoft:sqlserver://localhost:1433;databasename=DB명 
+MYSQL     |  DRIVER  |   org.gjt.mm.mysql.Driver 
+              |              |   (또는)com.mysql.jdbc.Driver
+              |  URL       |   jdbc:mysql://localhost:3306/DB명 
+
+
+1단계 : JDBC드라이버 로드
+Class.forName("드라이버종류");
+
+★ 드라이버 종류
+1. Access드라이버(ODBC) : Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+2. MySQL 드라이버:        Class.forName(“com.mysql.jdbc.Driver”);
+3. 오라클 드라이버 :      Class.forName(“oracle.jdbc.driver.OracleDriver”);
+4. MS-SQL 드라이버 :      Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver ");
+
+---------------------------------------------------------------------------------------
+2단계 :  데이터베이스 연결객체 생성
+Connection con = DriverManager.getConnection(url, uid, pwd);
+url : JDBC형식의 url
+uid : 사용자명
+pwd : 패스워드
+
+예)Connection con = DriverManager.getConnection("jdbc:odbc:jdbc", "master","java");
+
+1. Access인경우 : jdbc:odbc:ODBC명
+2. 오라클인경우 : jdbc:oracle://localhost:1521:SID
+3. MySQL인경우  : jdbc:mysql://localhost:3306/DB명
+4. MS-SQL인경우 : jdbc:Microsoft:sqlserver://localhost:1433;databasename=DB명 
+
+★ sql 에서 한글이 깨질경우
+url에    jdbc:mysql://localhost:3306/DB명?useUnicode=true&characterEncoding=euckr
+---------------------------------------------------------------------------------------
+3단계 : SQL문실행
+(방법1)
+Statement stmt=null;
+stmt = conn.createStatement();
+String sql="insert into PostDBTest values +"('"+dt2+"','"+stel+"','"+saddr+"')";
+stmt.executeUpdate(sql);
+
+(방법2)
+PreparedStatement pstmt=null;
+String sql="insert into PostDBTest values(?,?,?)";
+pstmt=conn.prepareStatement(sql);
+pstmt.setString(1, sname);
+pstmt.setString(2, stel);
+pstmt.setString(3, saddr);
+pstmt.executeUpdate();
+
+(참고)-------------------------------------------------------------------------------
+i)  executeUpdate() : insert, update, delete, create문
+ii) executeQuery() : select문
+
+int executeUpdate() 
+int : 처리된 결과 개수 (입력 or 수정된 개수 …)
+ResultSet exeucteQuery()
+ResultSet : select문의 결과 집합 (테이블)
+Cursor의 위치를 이동(next())해 가며 결과를 가져옴(getXxxx())
+
+예)
+String query = “SELECT COF_NAME, PRICE FROM COFFEES”;
+ResultSet rs = stmt.executeQuery(qeury);
+while( rs.next() ) 
+{
+	String s = rs.getString(“COF_NAME”);
+	float n = rs.getFloat(“PRICE”);
+	System.out.println(s + “ “ + n);
+} 
+----------------------------------------------------------------------------------------
+4단계 : 결과처리
+String str = "select name,age from member";
+ResultSet rs = stmt.executeQuery(str);
+--------------------------------------------------------------------------------------
+5단계 : 데이타베이스와 연결해제
+rs.close();    //ResultSet해제
+stmt.close();  //Statement해제
+con.close();   //Connection해제
+
+★레코드이동
+next() : 다음레코드
+previouse() : 이전레코드
+first() : 첫레코드
+last() : 마지막레코드
+
+
+=====================================================================================================
+OracleXE설치(패스워드:oracle)  
+     ※ oracle port변경
+        1.  cmd창 ->  sqlplus   system/oracle
+        2.  select dbms_xdb.getHttpPort() from dual;  ←포트확인
+        3.  exec dbms_xdb.setHttpPort(9000); ← 8080에서 9000으로 변경   
+        4. 웹브라우저 :  http://localhost:9000/apex
+	         웹브라우저 :  http://127.0.0.1:9000/apex
+	         웹브라우저 :  http://211.48.40.89:9000/apex
+               (포트가 안바뀔때 :  제어판 -> 관리도구 ->서비스)    
+               :  OracleServiceXE , OracleXETNSListener  (중지시켰다가 시작)
+    
+      ※ 사용자 계정만들기
+         1. 웹브라우저 : http://localhost:9000/apex
+         2. 관리자계정으로접속  : system/oracle   
+         3. 사용자계정만들기
+              관리 -> 데이터베이스사용자 -> 생성 
+              scott/tiger     
+               create table,  create  view, create sequence(체크)
+         4. 로그아웃후  scott/toger로 접속해볼것 
+   
+    ※오라클접속이 안될때
+         시작->설정->제어판->관리도구->서비스 에서 확인할것
+          OracleServiceXE           시작됨
+          OracleXETNSListener  시작됨 
+
+ 
+사용 (oracle연동)
+    ※ 파일복사 	
+    ① C:\Program Files\Java\jdk1.6.0_22\jre\lib\ext 밑에
+           ojdbc14.jar 를  복사
+           el-api.jar 를  복사
+           jsp-api.jar 를  복사
+           servlet-api.jar 를  복사
+    ② C:\Program Files\Apache Software Foundation\Tomcat 6.0\lib 밑에 
+           ojdbc14.jar 를  복사
+
+     ※QuantumDB셋팅(eclipse에서)
+     1. window -> open perspactive -> other -> QuantumDB -> ok
+     2. Database Bookmarks(오른버튼) -> New Bookmark -> Add driver ->
+        Add External jar -> C:\Tomcat 6.0\lib\ojdbc14.jar를 선택 ->
+        Browse -> oracle.jabc.driver.OracleDriver(선택) -> ok  ->
+        Type -> oracle (확인할것) -> finish
+     3. oracle.jdbc.driver...를 선택 -> next ->   
+         ----Connection details----
+         userid : scott
+         password : tiger
+         Host name : localhost    (or  127.0.0.1) 
+         port : 1521 
+         Database name : xe 
+
+        입력하고  -> next  -> name -> oracledb(맘대로입력) -> next ->
+        Show selected schemas -> add -> ok -> scott(선택) -> ok -> finish
+
+ 오라클우편번호넣기 - (방법1)
+1) c:\에다    schema.sql, zipcode.sql를 복사
+2) sql> start c:\schema.sql   (or   sql> @ c:\schema.sql)
+   sql> start c:\zipcode.sql 
+
+ 오라클우편번호넣기 - (방법2)
+
+1) http://www.zipfinder.co.kr 에서  우편번호 다운로드받기(type2)
+   엑셀로 읽어들여서 zipcode.csv로 변환한다
+   zipcode.csv를  c:\에 저장한다.
+
+2) cmd창에서   sqlplus   scott/tiger   입력
+sql>   에서 작성하시오
+
+create table zipcode(
+seq       number(5,0) not null,
+zipcode  varchar2(7) not null,
+sido       varchar2(6) not null,
+gugun    varchar2(30) not null,
+dong      varchar2(50) not null,
+ri           varchar2(80),
+bunji      varchar2(20),
+constraint  zipcode_pk  primary key (seq));
+
+3)탐색창에서  zipcode.ctl를 만들어서 editplus로 열기
+c:\oraclexe\app\oracle\product\10.2.0\server\BIN\zipcode.ctl 
+파일을 아래와 같이 만듬 (text문서)
+  (마지막에  ; 을 넣으면 절대안됨)
+
+load  data
+infile  'c:\zipcode.csv'
+insert
+into  table zipcode
+fields terminated by ","
+TRAILING  NULLCOLS
+(zipcode,
+ sido,
+ gugun,
+ dong,
+ ri,
+ bunji,
+ seq)
+
+4)cmd창에서
+1.  경로바꾸기 : cd  c:\oraclexe\app\oracle\product\10.2.0\server\bin
+2.  명령어입력 : sqlldr  userid=scott/tiger  control=zipcode.ctl  log=zipcode.log
+
+[형식]
+ sqlldr  userid=[오라클아이디]/[비밀번호]  control=zipcode.ctl  log=zipcode.log  입력하기
+
+5) 끝
+
+[문제] 전체 레코드수를 구하시오 ?   
+-----------------------------------------------------------------------------------
+[eclipse의 유용한단축키]
+
+ctrl + space : 자동완성기능
+ctrl + 1 : import, 예외처리등
+ctrl + shift + o : 모든import
+ctrl + shift + f : 자동정렬

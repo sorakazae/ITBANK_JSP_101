@@ -1,0 +1,29 @@
+<html lang="korea">
+ <head> 
+ <title>[two.html]</title> 
+ <script type="text/javascript">
+	function move(){
+		if(document.myform.sabun.value==""){
+			alert("사번이 공백입니다. 다시 데이터를 입력하세요");
+			myform.name.focus()
+		}else{
+			myform.name.focus();
+		}
+	} // move END
+ </script>
+ </head>
+ <body>
+  <font size=7 color=blue><b>[two.html]</b></font><br>
+	<form name="myform">
+	 <b>사번: </b> <input type=text name="sabun" style="font-size:24pt"> <br>
+	 <b>이름: </b> <input type=text name="name" style="font-size:24pt"> <br>
+	 <b>급여: </b> <input type=text name="pay" style="font-size:24pt"> <p>
+	 <input type="button" value="저 장" onClick="move()" style="font-size:24pt"> &nbsp;&nbsp;&nbsp;
+	 <input type="reset" value="취 소" style="font-size:24pt">
+	 </form>
+
+	 <p> <!-- table태그 -->
+	</b></font>
+  </font>
+ </body>
+</html> 

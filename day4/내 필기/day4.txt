@@ -1,0 +1,23 @@
+HTML: hyper text mark-up language
+SQL: structured Query language
+SQL언어 = DDL,DML,DCL
+DDL=data define language=> create,alter,drop
+DML=data maniqulation language=> select,insert
+DCL=grant,revoke, commit, rollback
+
+SQL언어규칙에 맞추어서 작성되는 DB=RDB=관계형데이타베이스
+규칙에서 문자데이타는 반드시 ''(싱글)에 써야한다
+oracle에서 날짜필드는 제공 sysdate필드
+insert into 테이블(필드, 필드) values ( 7788, 'Lee', sysdate, 92);
+
+SQL> insert into insa values(7788,'Lee',sysdate,92);
+
+
+
+
+
+SQL> delete from insa where sabun=사번;        선택삭제
+
+SQL> update insa set name='이름',pay=급여 where sabun=사번;        편집
+
+SQL> roll back;  롤백

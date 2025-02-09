@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    
+<html>
+<head>
+<title></title>
+</head>
+
+
+<body>
+ <font size=6 color=red> <b> [openID.jsp]</b></font>
+   <div align="center">
+	<form name="subform">
+	 <font size=5 color=red> <b> 사번:</b> </font>
+	 <input type=text name="id">
+	 <input type="submit" value="확인">
+    </form>
+   </div>
+  <p>
+	<img src="images/bar.gif">
+	
+</body>
+</html>
